@@ -5,6 +5,8 @@ import './App.css';
 import store from './store';
 
 import LandingPageContainer from './features/landing-page/components/LandingPageContainer';
+import DogListContainer from './features/dog-list/components/DogListContainer'
+
 
 class App extends React.Component {
   render() {
@@ -12,6 +14,7 @@ class App extends React.Component {
       <Provider store={store}>
         <div className="App">
           <LandingPageContainer />
+          <Route exact path="/breeds" component={DogListContainer} />
         </div>
       </Provider>
     );
