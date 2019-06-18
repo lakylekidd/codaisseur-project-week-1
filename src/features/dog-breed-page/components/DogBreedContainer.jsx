@@ -8,15 +8,11 @@ export default class DogBreedContainer extends Component {
         dogBreedImages: []
     }
 
-    addImages(breedImages) {
-        var size = 10;
-        var items = breedImages.slice(0, size).map(i => {
-            console.log(i);
-        })
-    }
-
     componentDidMount() {
-        request('https://dog.ceo/api/breed/hound/images')
+        // Retrieve the ID of the breed (name)
+        const id = this.props.match.params.id;
+        // Fetch data based on breed name
+        request(`https://dog.ceo/api/breed/${id}/images`)
             .then(r => r.body.message)
             .then(data => {
                 var size = 10;
@@ -26,7 +22,7 @@ export default class DogBreedContainer extends Component {
     }
 
     render() {
-        const id = this.props.match.params.id;
+
         return (
             <DogBreed breed={'Breed Name'} images={this.state.dogBreedImages} />
         )
