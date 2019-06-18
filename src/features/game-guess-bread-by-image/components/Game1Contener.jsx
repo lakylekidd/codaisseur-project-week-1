@@ -5,64 +5,93 @@ export default class Game1Contener extends Component {
   state = {
     guessDog: {
       id: 1, //num
-      name: 'doggo',
+      name: 'doggo test',
       imgs: ['url 1', 'url 2'],
       img: 'url to loding img'
     },
     allDogs: [
       {
         id: 1,
-        name: 'doggo',
-        imgs: ['url 1', 'url 2']
+        name: 'a doggo 1'
       },
       {
         id: 2,
-        name: 'doggo',
-        imgs: ['url 1', 'url 2']
+        name: 'a doggo 2'
       },
       {
         id: 3,
-        name: 'doggo',
-        imgs: ['url 1', 'url 2']
+        name: 'a doggo 3',
+      },
+      {
+        id: 4,
+        name: 'a doggo 4',
+      },
+      {
+        id: 5,
+        name: 'a doggo 5',
+      },
+      {
+        id: 6,
+        name: 'a doggo 6',
+      },
+      {
+        id: 7,
+        name: 'a doggo 7',
       }
     ],
-    dogs:[
+    guessDogs:[
       {
         id: 2,
-        name: 'doggo2',
-        imgs: ['url 1', 'url 2']
+        name: 'doggo2'
       },
       {
       id: 1,
-      name: 'doggo1',
-      imgs: ['url 1', 'url 2']
+      name: 'doggo1'
     },
     {
       id: 3,
-      name: 'doggo3',
-      imgs: ['url 1', 'url 2']
+      name: 'doggo3'
     }]
   }
 
   setImgUrl = (imgs = this.state.guessDog.imgs) => {
     const r = Math.floor(Math.random() * imgs.length)
-    console.log(imgs)
-    console.log(r)
-    console.log(this.state.guessDog.imgs[r])
     this.setState({
       guessDog: { ...this.state.guessDog,
         img: imgs[r]
       }
     })
-    console.log(this.state)
+  }
+  setData(){
+    this.setGuesDog()
+    this.setImgUrl()
+    this.setGuesDogs()
+  }
+  setGuesDog() {
+    // gets the guessDog
+  }
+  setGuesDogs() {
+    let dogs = [this.state.guessDog]
+
+    dogs = this.addNewDog(dogs)
+    dogs = this.addNewDog(dogs)
+
+    console.log("sgd's", dogs)
+    this.setState({
+      guessDogs: dogs
+    })
+  }
+  addNewDog(dogs = []) {
+
+    
+    return dogs.concat([this.state.allDogs[Math.floor(Math.random() * this.state.allDogs.length)]])
   }
 
   componentDidMount() {
-    this.setImgUrl()
-    console.log(this.state.guessDog.img)
+    this.setData()
   }
 
-  renderDog(dog = this.state.dogs[0]) {
+  renderDog(dog = this.state.guessDogs[0]) {
     return (
       <li className = 'dog'
         key={dog.id}
@@ -71,12 +100,12 @@ export default class Game1Contener extends Component {
     )
   }
   render() {
-    console.log(this.state.guessDog.img, 'r')
+    console.log('r', this.state)
     return (
       <div className='game1'>
-        <image scr={this.state.guessDog.img} />
+        <img src={this.state.guessDog.img} alt= {this.state.guessDog.name} />
         <ul className='guessDogs'> {/* use flexbox */} 
-          {this.state.dogs.map(this.renderDog)}
+          {this.state.guessDogs.map(this.renderDog)}
         </ul>
       </div>
     )
