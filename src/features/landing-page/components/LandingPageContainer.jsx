@@ -7,8 +7,7 @@ export default class LandingPageContainer extends Component {
             <div>
                 <h1>The Landing Page</h1>
                 <p>Landing Page works!</p>
-                <Link to={`/breeds`}>Doglist</Link>
-               
+                <Link to={`/breeds`}>Doglist</Link>               
             </div>
         )
     }
