@@ -17,5 +17,5 @@ export function getDogs() {
             .then(breeds => {
                 dispatch(setDogs(breeds))
             })
-        }
+    }
 }
