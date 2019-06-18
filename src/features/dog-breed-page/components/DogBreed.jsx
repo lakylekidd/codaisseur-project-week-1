@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './DogBreed.css';
 
 export default class DogBreed extends Component {
@@ -13,8 +14,9 @@ export default class DogBreed extends Component {
         // Retrieve the list of images
         const { images, breed } = this.props;
         return (
-            <div>
+            <div className={'breed-page'}>
                 <h1>{breed}</h1>
+                <Link to="/">back to home</Link>
                 {
                     !images &&
                     "Loading images"

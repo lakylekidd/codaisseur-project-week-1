@@ -1,3 +1,7 @@
+div.breed-page {
+    
+}
+
 h1 {
     text-transform: capitalize;
 }
@@ -9,6 +13,8 @@ ul.breed-images {
     flex-wrap: wrap;
 }
 ul.breed-images > li > img{
-    width: 200px;
     margin: 5px;
+    object-fit: cover;
+    width: 300px;
+    height: 337px;
 }

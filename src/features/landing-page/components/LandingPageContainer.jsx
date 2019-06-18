@@ -5,9 +5,10 @@ export default class LandingPageContainer extends Component {
     render() {
         return (
             <div>
-                <h1>The Landing Page</h1>
-                <p>Landing Page works!</p>
-                <Link to={`/breeds`}>Doglist</Link>               
+                <h1>Dog Breeds of the World</h1>
+                <p>Welcome to dog breeds of the world app.</p>
+                <p>Use the following links to test your skills recognizing all the famous dog breeds.</p>
+                <Link to={`/breeds`}>Doglist</Link>
             </div>
         )
     }
