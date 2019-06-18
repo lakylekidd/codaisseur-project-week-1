@@ -70,3 +70,7 @@ Because this project is for you to practice and learn from, and learning involve
 5. Start implementing the features one by one and deploy them when they are working.
 
 6. Occasionally you might be able to develop two features in parallel. If you spot an opportunity: go for it. But make sure to finish one feature before starting the next one.
+
+
+# Team
+Arianus, Billy and Martin
