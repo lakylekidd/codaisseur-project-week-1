@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import reducer from './reducers';
+import reducer from './features/reducers';
 
 // Enable enhancer for Chrome Dev Tools for Redux
 const enhancer = window.__REDUX_DEVTOOLS_EXTENSION__ &&
