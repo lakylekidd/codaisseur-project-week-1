@@ -96,6 +96,9 @@ export default class Game1Contener extends Component {
       });
       if (c2) {
         n++
+        if (n >= this.state.allDogs.length) {
+          n=0
+        }
       } else {
         return dogs.concat([this.state.allDogs[n]])
       }
