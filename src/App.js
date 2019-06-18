@@ -8,6 +8,7 @@ import LandingPageContainer from './features/landing-page/components/LandingPage
 import DogBreedContainer from './features/dog-breed-page/components/DogBreedContainer';
 import DogListContainer from './features/dog-list/components/DogListContainer'
 
+import Game1Contener from './features/game-guess-bread-by-image/components/Game1Contener'
 
 class App extends React.Component {
   render() {
@@ -17,6 +18,7 @@ class App extends React.Component {
           <Route exact path='/' component={LandingPageContainer} />
           <Route exact path="/breeds/:id" component={DogBreedContainer} />
           <Route exact path="/breeds" component={DogListContainer} />
+          <Route exact path="/game1" component={Game1Contener} />
         </div>
       </Provider>
     );
