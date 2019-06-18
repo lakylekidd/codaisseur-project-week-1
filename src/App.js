@@ -5,6 +5,7 @@ import './App.css';
 import store from './store';
 
 import LandingPageContainer from './features/landing-page/components/LandingPageContainer';
+import DogBreedContainer from './features/dog-breed-page/components/DogBreedContainer';
 import DogListContainer from './features/dog-list/components/DogListContainer'
 
 
@@ -13,7 +14,8 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <div className="App">
-          <LandingPageContainer />
+          <Route exact path='/' component={LandingPageContainer} />
+          <Route exact path="/breeds/:id" component={DogBreedContainer} />
           <Route exact path="/breeds" component={DogListContainer} />
         </div>
       </Provider>

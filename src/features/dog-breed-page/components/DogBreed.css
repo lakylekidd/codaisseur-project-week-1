@@ -1,0 +1,14 @@
+h1 {
+    text-transform: capitalize;
+}
+
+ul.breed-images {
+    list-style-type: none;
+    display: flex;
+    width: 90%;
+    flex-wrap: wrap;
+}
+ul.breed-images > li > img{
+    width: 200px;
+    margin: 5px;
+}
