@@ -6,6 +6,7 @@ export default function DogList(props) {
     return (
         <div className="wrapper">
             <h1>List of Breeds</h1>
+            <Link to="/">back to home</Link>
             {
                 props.dogs &&
                 <ul>
