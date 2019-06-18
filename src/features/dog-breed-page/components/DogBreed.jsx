@@ -13,7 +13,7 @@ export default class DogBreed extends Component {
         // Retrieve the list of images
         const { images, breed } = this.props;
         return (
-            <div>
+            <div className={'breed-page'}>
                 <h1>{breed}</h1>
                 {
                     !images &&
