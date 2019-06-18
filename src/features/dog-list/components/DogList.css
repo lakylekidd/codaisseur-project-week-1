@@ -17,18 +17,16 @@ div{
       text-align: center; 
     }
 ul { 
-    list-style: none;
-      display:inline-table; 
-      text-decoration-color: black
+      list-style: none;  
+      display: flex; 
+      flex-wrap: wrap;  
+      flex-direction: column; 
+      max-height: 600px;
     }
 li { 
-    align-items: center; 
-    margin: 1rem 0rem 1rem 0rem;
-    padding: 1rem;
-    display: flex;
-    align-content: space-between;
-    align-items: center;
-    background-color: #e4cda4;
-    border: 1px solid #ccc;
-    max-width: 10rem
+    flex: 1;
+    text-transform: capitalize;
+    margin: 5px;
+    background-color: lightblue;
+    padding: 5px;
   }
