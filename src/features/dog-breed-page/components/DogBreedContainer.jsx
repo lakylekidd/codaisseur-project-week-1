@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as request from 'superagent';
 import { getDogBreeds } from './../actions/getBreed';
 import DogBreed from './DogBreed';
 
@@ -12,8 +11,9 @@ class DogBreedContainer extends Component {
     }
 
     render() {
+        const id = this.props.match.params.id;
         return (
-            <DogBreed breed={'Breed Name'} images={this.props.dogBreedImages} />
+            <DogBreed breed={id} images={this.props.dogBreedImages} />
         )
     }
 }

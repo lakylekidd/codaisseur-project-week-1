@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import './DogBreed.css';
 
 export default class DogBreed extends Component {
     renderImage(image) {
@@ -20,7 +21,7 @@ export default class DogBreed extends Component {
                 }
                 {
                     images &&
-                    <ul>
+                    <ul className={'breed-images'}>
                         {images.map(this.renderImage)}
                     </ul>
                 }

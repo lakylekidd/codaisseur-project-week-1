@@ -12,7 +12,7 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <div className="App">
-          <LandingPageContainer />
+          <Route exact path='/' component={LandingPageContainer} />
           <Route exact path="/breeds/:id" component={DogBreedContainer} />
         </div>
       </Provider>
