@@ -39,30 +39,31 @@ export default class Game1Contener extends Component {
         name: 'a doggo 7',
       }
     ],
-    guessDogs:[
+    guessDogs: [
       {
         id: 2,
         name: 'doggo2'
       },
       {
-      id: 1,
-      name: 'doggo1'
-    },
-    {
-      id: 3,
-      name: 'doggo3'
-    }]
+        id: 1,
+        name: 'doggo1'
+      },
+      {
+        id: 3,
+        name: 'doggo3'
+      }]
   }
 
   setImgUrl = (imgs = this.state.guessDog.imgs) => {
     const r = Math.floor(Math.random() * imgs.length)
     this.setState({
-      guessDog: { ...this.state.guessDog,
+      guessDog: {
+        ...this.state.guessDog,
         img: imgs[r]
       }
     })
   }
-  setData(){
+  setData() {
     this.setGuesDog()
     this.setImgUrl()
     this.setGuesDogs()
@@ -82,9 +83,31 @@ export default class Game1Contener extends Component {
     })
   }
   addNewDog(dogs = []) {
+    let c = true
+    let b = 0
+    let n = Math.floor(Math.random() * this.state.allDogs.length)
+    while (c) {
 
-    
-    return dogs.concat([this.state.allDogs[Math.floor(Math.random() * this.state.allDogs.length)]])
+      let c2 = false
+      dogs.forEach(dog => {
+        if (dog.id === n + 1) {
+          c2 = true
+        }
+      });
+      if (c2) {
+        n++
+      } else {
+        return dogs.concat([this.state.allDogs[n]])
+      }
+
+      // prevent infenet loop
+      if (b > 100) {
+        console.log('loop tends to infinety')
+        break
+      }
+      b++
+    }
+
   }
 
   componentDidMount() {
@@ -93,9 +116,9 @@ export default class Game1Contener extends Component {
 
   renderDog(dog = this.state.guessDogs[0]) {
     return (
-      <li className = 'dog'
+      <li className='dog'
         key={dog.id}
-        style={{order : dog.id }} > 
+        style={{ order: dog.id }} >
         {dog.name}</li>
     )
   }
@@ -103,8 +126,8 @@ export default class Game1Contener extends Component {
     console.log('r', this.state)
     return (
       <div className='game1'>
-        <img src={this.state.guessDog.img} alt= {this.state.guessDog.name} />
-        <ul className='guessDogs'> {/* use flexbox */} 
+        <img src={this.state.guessDog.img} alt={this.state.guessDog.name} />
+        <ul className='guessDogs'> {/* use flexbox */}
           {this.state.guessDogs.map(this.renderDog)}
         </ul>
       </div>
