@@ -2,6 +2,7 @@ import * as React from 'react'
 import DogsList from './DogList'
 import { connect } from 'react-redux'
 import { getDogs } from '../actions/getDogs'
+import  './DogList.css'
 
 class DogListContainer extends React.Component {
 

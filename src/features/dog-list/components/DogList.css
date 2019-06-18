@@ -1,0 +1,34 @@
+/*
+ul {
+    list-style: none;
+    align-items: center;
+}
+li {
+    margin: 1rem 0rem 1rem 20rem;
+    padding: 1rem;
+    display: flex;
+    align-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    max-width: 10rem
+  }
+  */
+div{ 
+      text-align: center; 
+    }
+ul { 
+    list-style: none;
+      display:inline-table; 
+      text-decoration-color: black
+    }
+li { 
+    align-items: center; 
+    margin: 1rem 0rem 1rem 0rem;
+    padding: 1rem;
+    display: flex;
+    align-content: space-between;
+    align-items: center;
+    background-color: #e4cda4;
+    border: 1px solid #ccc;
+    max-width: 10rem
+  }

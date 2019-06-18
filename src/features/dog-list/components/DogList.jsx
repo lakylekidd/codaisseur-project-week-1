@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export default function DogList(props) {
     return (
-        <div>
+        <div className="wrapper">
             {
                 props.dogs &&
                 <ul>
