@@ -44,17 +44,25 @@ export default class Game1Contener extends Component {
     }]
   }
 
-  setImgUrl = (imgs = []) => {
-    //const r = Math.floor(Math.random() * imgs.length)
-    //this.state.guessDog.img = this.state.guessDog.imgs[r]
+  setImgUrl = (imgs = this.state.guessDog.imgs) => {
+    const r = Math.floor(Math.random() * imgs.length)
+    console.log(imgs)
+    console.log(r)
+    console.log(this.state.guessDog.imgs[r])
+    this.setState({
+      guessDog: { ...this.state.guessDog,
+        img: imgs[r]
+      }
+    })
+    console.log(this.state)
   }
 
   componentDidMount() {
     this.setImgUrl()
+    console.log(this.state.guessDog.img)
   }
 
-  renderDog(dog = this.state.dogs[0], i) {
-    console.log(dog, i)
+  renderDog(dog = this.state.dogs[0]) {
     return (
       <li className = 'dog'
         key={dog.id}
@@ -63,6 +71,7 @@ export default class Game1Contener extends Component {
     )
   }
   render() {
+    console.log(this.state.guessDog.img, 'r')
     return (
       <div className='game1'>
         <image scr={this.state.guessDog.img} />
