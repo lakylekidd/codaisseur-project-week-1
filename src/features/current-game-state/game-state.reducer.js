@@ -39,7 +39,8 @@ function setCurrentState(state, action) {
         case RUNNING_STATE:
         case GAME_OVER_SATE:
             // Check if the game id matches current state
-            if (state.gameId === action.payload.gameId) {
+            if (state.gameId === action.payload.gameId ||
+                state.gameId === null) {
                 // If they match return the new payload
                 return {
                     ...action.payload

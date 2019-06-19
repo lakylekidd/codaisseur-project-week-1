@@ -1,6 +1,14 @@
 import React, { Component } from 'react'
 import Game1Container from './Game1Container'
 import { connect } from 'react-redux'
+
+import {
+    setGameState,
+    IDLE_STATE,     // No game is currently running.
+    START_STATE,    // Game welcome page showing
+    RUNNING_STATE,  // Game logic running
+    GAME_OVER_SATE  // Game over page showing with stats
+} from './../../current-game-state/actions/setGameState';
 import { getBreedsArray } from './../actions/getBreedsArray';
 import { setMainBreed } from './../actions/setMainBreed';
 import { setGuessBreeds } from './../actions/setGuessBreeds';
@@ -83,6 +91,8 @@ class GameContainer extends Component {
         // and make them into custom objects that contain their images
         // this will ensure less api calls during the game
         this.props.getBreedsArray();
+        // Set the current state
+        this.props.setGameState(START_STATE, 1)
     }
 
     render() {
@@ -101,14 +111,16 @@ const mapStateToProps = (store) => {
     return {
         answered: store.answered,
         breeds: store.breeds,
-        current: store.currentGameData
+        current: store.currentGameData,
+        gameState: store.currentGameState
     }
 }
 const mapDispatchToProps = {
     getBreedsArray,
     setMainBreed,
     setGuessBreeds,
-    setAnsweredBreed
+    setAnsweredBreed,
+    setGameState
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameContainer)
