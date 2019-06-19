@@ -12,7 +12,6 @@ div.footer {
     background-color: #0E0B16;
 }
 
-div.footer > p {
-margin-left: 35rem;    
-font-size: 15px;
+div.footer > p {  
+    font-size: 15px;
 }
