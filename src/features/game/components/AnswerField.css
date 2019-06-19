@@ -1,0 +1,29 @@
+
+.answerField {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+
+.answerButton {
+    text-transform: capitalize;
+    background-color: #a9c3fc;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 19px;
+    padding: 10px 40px;
+}
+.answerButton:hover {
+    
+    box-shadow: 2px 2px 5px rgb(160, 160, 160)
+}
+
+.correct {
+    background-color: rgb(137, 206, 146);
+}
+
+.falsy {
+    background-color: rgb(146, 25, 25)
+}
