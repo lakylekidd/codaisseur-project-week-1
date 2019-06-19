@@ -10,9 +10,13 @@ class ExitGameButton extends Component {
     exitGame = () => {
         this.props.setGameState(IDLE_STATE);
     }
+
     render() {
         return (
-            <button className="exit-link-button" onClick={this.exitGame} title="Click to exit the game.">Exit game</button>
+            <button className="exit-link-button"
+                onClick={this.exitGame}
+                title="Click to exit the game.">Exit game
+            </button>
         )
     }
 }

@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
-import Game1Container from './Game1Container'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import Game1Container from './Game1Container';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import {
     setGameState,
@@ -16,6 +17,7 @@ import { setAnsweredBreed } from './../actions/setAnsweredBreed';
 import Game1Welcome from './Game1Welcome';
 
 class GameContainer extends Component {
+
     answer = (breed) => {
         // let action = {
         //     type: 'ADD ANSER',
@@ -87,13 +89,12 @@ class GameContainer extends Component {
         return Math.floor(Math.random() * this.props.breeds.length);
     }
 
-    componentDidMount() {
+    componentWillMount() {
         // When we enter any game, we need to fetch all the breeds
         // and make them into custom objects that contain their images
         // this will ensure less api calls during the game
         this.props.getBreedsArray();
-        // Set the current state to start
-        this.props.setGameState(START_STATE, 1);
+
     }
 
     componentWillUnmount() {
@@ -117,6 +118,10 @@ class GameContainer extends Component {
                         {
                             this.props.gameState.state === RUNNING_STATE &&
                             < Game1Container main={this.props.current.main} guesses={this.props.current.guesses} answer={this.answer} />
+                        }
+                        {
+                            this.props.gameState.state === IDLE_STATE &&
+                            <Redirect to='/' />
                         }
                     </div>
                 }
