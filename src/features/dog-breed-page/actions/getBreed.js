@@ -1,4 +1,4 @@
-import * as request from 'superagent';
+import * as request from 'superagent'
 
 export const SET_DOG_BREED_IMAGES = 'SET_DOG_BREED_IMAGES';
 
