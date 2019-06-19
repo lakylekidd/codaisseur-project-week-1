@@ -108,6 +108,10 @@ class GameContainer extends Component {
                             this.props.gameState.state === START_STATE &&
                             <Game1Welcome />
                         }
+                        {
+                            this.props.gameState.state === RUNNING_STATE &&
+                            < Game1Container main={this.props.current.main} guesses={this.props.current.guesses} answer={this.answer} />
+                        }
                     </div>
                 }
             </div>
