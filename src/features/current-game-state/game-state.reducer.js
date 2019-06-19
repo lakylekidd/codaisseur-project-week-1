@@ -10,7 +10,7 @@ import {
 // Define the initial state
 const initialState = {
     gameId: null,
-    state: 'somestate'
+    state: IDLE_STATE
 }
 
 export default (state = initialState, action = {}) => {

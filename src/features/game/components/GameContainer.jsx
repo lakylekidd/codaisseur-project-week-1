@@ -96,6 +96,12 @@ class GameContainer extends Component {
         this.props.setGameState(START_STATE, 1);
     }
 
+    componentWillUnmount() {
+        // Set the state back to idle
+        this.props.setGameState(IDLE_STATE, 1);
+
+    }
+
     render() {
         return (
             <div>
