@@ -20,7 +20,7 @@ export default class AnswerField extends Component {
         return (
             <div className="answerField">
                 <button className={`answerButton ${(displayAnswer && answerClass)} ${selectedClass}`} onClick={(e) => this.checkAnswer(breed, e)}>{breed.name}</button>
-            </div>
+            </div >
         )
     }
 }

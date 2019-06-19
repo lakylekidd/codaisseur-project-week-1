@@ -3,14 +3,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    border-radius: 5px;
-    border: 10px solid lightblue;;
 }
 
 
 .answerButton {
     text-transform: capitalize;
-    background-color: lightblue;
+    background-color: #a9c3fc;
     cursor: pointer;
     border-radius: 5px;
     border: 1px solid #ccc;

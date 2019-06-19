@@ -12,7 +12,7 @@ div.wrapper {
     flex: 1;
     text-transform: capitalize;
     margin: .2rem;
-    background-color: lightblue;
+    background-color: #a9c3fc;
     cursor: pointer;
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -23,6 +23,6 @@ div.wrapper {
     text-decoration: none;
   }
   .wrapper li:hover {
-    background-color: rgb(137, 189, 206);
+    background-color: rgb(225, 231, 245);
     box-shadow: 2px 2px 5px rgb(160, 160, 160);
   }

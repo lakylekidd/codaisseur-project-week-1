@@ -13,7 +13,7 @@ class Game1Container extends Component {
         const { main } = this.props;
 
         // Pass the answer to the game container
-        passAnswer(breed.id);
+        passAnswer(breed);
 
         // Check if the answer was correct
         if (breed.id === main.id) {

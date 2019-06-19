@@ -1,9 +1,14 @@
+import { SET_ANSWERED_BREED } from './actions/setAnsweredBreed';
+/**
+ * Reducer that stores a list of already answered breeds
+ */
 export default (state = [], action = {}) => {
     switch (action.type) {
-        case 'ADD ANSER':
-            return state.concat([action.payload])
-        case 'CLEAR ANDERS':
-            return []
+        case SET_ANSWERED_BREED:
+            return [
+                ...state,
+                action.payload
+            ]
         default:
             return state
     }

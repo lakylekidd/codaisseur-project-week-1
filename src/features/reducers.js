@@ -3,9 +3,9 @@ import landingPageReducer from './landing-page/landing-page.reducer';
 
 import dogBreedImages from './dog-breed-page/reducer';
 import dogListReducer from './dog-list/dog-list.reducer'
-import answer from './game/answerReducer.js'
-import dogBreads from './game/dogBreadReducer'
-import gameReducer from './game/game.reducer';
+import answered from './game/answerReducer.js'
+import breeds from './game/game.reducer';
+import currentGameData from './game/main-current-breeds.reducer';
 
 // Export the combination of all the available
 // reducers as a default export
@@ -14,7 +14,7 @@ export default combineReducers({
     landingPageReducer,
     dogBreedImages,
     dogListReducer,
-    answer,
-    dogBreads,
-    gameReducer
+    answered,
+    breeds,
+    currentGameData
 })

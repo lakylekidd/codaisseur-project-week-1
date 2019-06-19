@@ -2,47 +2,89 @@ import React, { Component } from 'react'
 import Game1Container from './Game1Container'
 import { connect } from 'react-redux'
 import { getBreedsArray } from './../actions/getBreedsArray';
+import { setMainBreed } from './../actions/setMainBreed';
+import { setGuessBreeds } from './../actions/setGuessBreeds';
+import { setAnsweredBreed } from './../actions/setAnsweredBreed';
 
 class GameContainer extends Component {
-    main = {
-        id: 1,
-        name: 'dog 1',
-        img: 'https://cdn3.volusion.com/uarwc.hcckz/v/vspfiles/photos/90-441-2.jpg'
+    answer = (breed) => {
+        // let action = {
+        //     type: 'ADD ANSER',
+        //     payload: null
+        // }
+        // if (breed.id === this.props.current.main.id) {
+        //     action.payload = true
+        // } else {
+        //     action.payload = false
+        // }
+        this.props.setAnsweredBreed(breed);
     }
-    guesses = [
-        {
-            id: 2,
-            name: 'dog 2',
-            img: 'https://images.homedepot-static.com/productImages/de2f56f3-89e4-48cf-9209-256e290c3a71/svn/architectural-mailboxes-house-letters-numbers-3582b-2-64_1000.jpg'
-        },
-        {
-            id: 3,
-            name: 'dog 3',
-            img: 'https://images.homedepot-static.com/productImages/26669ef9-b241-4074-9d52-aa50bf5a3e0c/svn/architectural-mailboxes-house-letters-numbers-3582b-3-64_1000.jpg'
-        }
-    ]
 
-    answer = (id) => {
-        let action = {
-            type: 'ADD ANSER',
-            payload: null
+    /**
+     * Function that returns a random breed
+     */
+    getNextRandomBreed = () => {
+        // Retrieve a random breed using a random id
+        const uniqueBreed = this.getUniqueBreed(this.getRndId());
+        // Check if nothing is returned 
+        if (uniqueBreed) {
+            // Breed is returned, set as main breed
+            this.props.setMainBreed(uniqueBreed);
         }
-        if (id === this.main.id) {
-            action.payload = true
-        } else {
-            action.payload = false
+    }
+    getNextRandomBreeds = (number) => {
+
+    }
+
+
+    getUniqueBreed = (id, loopCount = 0) => {
+        // Check if all dogs have been answered
+        if (this.props.answered.length === this.props.breeds.lenght ||
+            loopCount >= 20) {
+            // All dogs have been answered OR
+            // the recursion hit 20 or more recursions return null
+            return null;
         }
-        this.props.dispatch(action)
+
+        // Check if the breed has already been answered
+        if (this.props.answered.includes(b => b.id === id)) {
+            // Breed has already been answered
+            let newRandomId = id + 1;
+            // Check if new random id is more than breeds length
+            if (newRandomId >= this.props.breeds.lenght) {
+                newRandomId = 1; // Reset it back to one
+            }
+            return this.getUniqueBreed(newRandomId, ++loopCount);
+        }
+        // If code reached this far then the breed has not
+        // been answered yet
+        // Retrieve the breed based on the random id
+        return this.props.breeds.find(b => b.id === id);
+    }
+
+    /**
+     * Returns a random ID from the breeds list
+     */
+    getRndId = () => {
+        return Math.floor(Math.random() * this.props.breeds.length);
     }
 
     componentDidMount() {
+        // When we enter any game, we need to fetch all the breeds
+        // and make them into custom objects that contain their images
+        // this will ensure less api calls during the game
         this.props.getBreedsArray();
+        this.getNextRandomBreed();
     }
 
     render() {
         return (
             <div>
-                < Game1Container main={this.main} guesses={this.guesses} answer={this.answer} />
+                {
+                    this.props.current &&
+                    < Game1Container main={this.props.current.main} guesses={this.props.current.guesses} answer={this.answer} />
+                }
+
             </div>
         )
     }
@@ -50,11 +92,16 @@ class GameContainer extends Component {
 
 const mapStateToProps = (store) => {
     return {
-        ansers: store.ansersReducer
+        answered: store.answered,
+        breeds: store.breeds,
+        current: store.currentGameData
     }
 }
 const mapActionToProps = {
-    getBreedsArray: getBreedsArray
+    getBreedsArray: getBreedsArray,
+    setMainBreed,
+    setGuessBreeds,
+    setAnsweredBreed
 }
 
 export default connect(mapStateToProps, mapActionToProps)(GameContainer)
