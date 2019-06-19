@@ -31,3 +31,7 @@ div.game-welcome-page button:hover {
     box-shadow: 0px 0px 20px rgb(20, 67, 168);
     border-radius: 50px;
 }
+div.game-welcome-page a {
+    margin-top: 10px;
+    color: black;
+}

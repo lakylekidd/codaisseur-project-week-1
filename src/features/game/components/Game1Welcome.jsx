@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './Game1Welcome.css';
+
 
 export default class Game1Welcome extends Component {
     render() {
@@ -18,7 +20,8 @@ export default class Game1Welcome extends Component {
                     <li>You can have a maximum of <b>n</b> wrong answers</li>
                     <li>Have fun!</li>
                 </ol>
-                <button>Start Game</button>
+                <button title="Click to start the game!">Start Game</button>
+                <Link to="/" title="Click to exit the game.">Exit game</Link>
             </div>
         )
     }
