@@ -17,7 +17,16 @@ class GameContainer extends Component {
         // } else {
         //     action.payload = false
         // }
-        this.props.setAnsweredBreed(breed);
+
+        // Retrieve the needed properties from the breed
+        const { id, name, img } = breed;
+        // Check if answer was truthy or falsy
+        const correct = this.props.current.main.id === id;
+        // Set the answered breed
+        this.props.setAnsweredBreed({
+            id, name, img, correct
+        });
+        //this.getNextRandomBreed();
     }
 
     /**
@@ -74,7 +83,6 @@ class GameContainer extends Component {
         // and make them into custom objects that contain their images
         // this will ensure less api calls during the game
         this.props.getBreedsArray();
-        this.getNextRandomBreed();
     }
 
     render() {
@@ -84,7 +92,6 @@ class GameContainer extends Component {
                     this.props.current &&
                     < Game1Container main={this.props.current.main} guesses={this.props.current.guesses} answer={this.answer} />
                 }
-
             </div>
         )
     }
@@ -97,11 +104,11 @@ const mapStateToProps = (store) => {
         current: store.currentGameData
     }
 }
-const mapActionToProps = {
-    getBreedsArray: getBreedsArray,
+const mapDispatchToProps = {
+    getBreedsArray,
     setMainBreed,
     setGuessBreeds,
     setAnsweredBreed
 }
 
-export default connect(mapStateToProps, mapActionToProps)(GameContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(GameContainer)
