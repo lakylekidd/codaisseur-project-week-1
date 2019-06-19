@@ -15,7 +15,7 @@ div.game-welcome-page ol {
 div.game-welcome-page ol > li {
     font-size: 1.0em;
 }
-div.game-welcome-page button {
+div.game-welcome-page button.game-start {
     font-size: 1.4em;
     padding: 10px 30px;
     background-color: green;
@@ -24,7 +24,7 @@ div.game-welcome-page button {
     border-radius: 5px;
     transition: .2s linear;
 }
-div.game-welcome-page button:hover {
+div.game-welcome-page button.game-start:hover {
     cursor: pointer;
     background-color: rgb(32, 187, 32);
     transform: scale(1.1);

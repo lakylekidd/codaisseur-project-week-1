@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
     setGameState,
     IDLE_STATE,     // No game is currently running.
     RUNNING_STATE,    // Game welcome page showing
 } from './../../current-game-state/actions/setGameState';
+import ExitGameButton from './ExitGameButton';
 import './Game1Welcome.css';
 
 
@@ -33,8 +33,8 @@ class Game1Welcome extends Component {
                     <li>You can have a maximum of <b>n</b> wrong answers</li>
                     <li>Have fun!</li>
                 </ol>
-                <button onClick={this.startGame} title="Click to start the game!">Start Game</button>
-                <Link to="/" title="Click to exit the game.">Exit game</Link>
+                <button className="game-start" onClick={this.startGame} title="Click to start the game!">Start Game</button>
+                <ExitGameButton />
             </div>
         )
     }
