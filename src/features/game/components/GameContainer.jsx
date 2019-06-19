@@ -13,6 +13,7 @@ import { getBreedsArray } from './../actions/getBreedsArray';
 import { setMainBreed } from './../actions/setMainBreed';
 import { setGuessBreeds } from './../actions/setGuessBreeds';
 import { setAnsweredBreed } from './../actions/setAnsweredBreed';
+import Game1Welcome from './Game1Welcome';
 
 class GameContainer extends Component {
     answer = (breed) => {
@@ -91,8 +92,8 @@ class GameContainer extends Component {
         // and make them into custom objects that contain their images
         // this will ensure less api calls during the game
         this.props.getBreedsArray();
-        // Set the current state
-        this.props.setGameState(START_STATE, 1)
+        // Set the current state to start
+        this.props.setGameState(START_STATE, 1);
     }
 
     render() {
@@ -100,7 +101,14 @@ class GameContainer extends Component {
             <div>
                 {
                     this.props.current &&
-                    < Game1Container main={this.props.current.main} guesses={this.props.current.guesses} answer={this.answer} />
+                    <div>
+                        {
+                            // Check if the current state is set to start
+                            // If so, show the welcome page
+                            this.props.gameState.state === START_STATE &&
+                            <Game1Welcome />
+                        }
+                    </div>
                 }
             </div>
         )
