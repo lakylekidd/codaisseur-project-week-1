@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Game1Container from './Game1Container'
 import { connect } from 'react-redux'
+import { getBreedsArray } from './../actions/getBreedsArray';
 
 class GameContainer extends Component {
     main = {
@@ -21,25 +22,27 @@ class GameContainer extends Component {
         }
     ]
 
-    anser = (id) => {
+    answer = (id) => {
         let action = {
             type: 'ADD ANSER',
             payload: null
         }
         if (id === this.main.id) {
             action.payload = true
-            console.log('corect')
         } else {
             action.payload = false
-            console.log('incorect')
         }
         this.props.dispatch(action)
+    }
+
+    componentDidMount() {
+        this.props.getBreedsArray();
     }
 
     render() {
         return (
             <div>
-                < Game1Container main={this.main} guesses={this.guesses} anser={this.anser} />
+                < Game1Container main={this.main} guesses={this.guesses} answer={this.answer} />
             </div>
         )
     }
@@ -50,5 +53,8 @@ const mapStateToProps = (store) => {
         ansers: store.ansersReducer
     }
 }
+const mapActionToProps = {
+    getBreedsArray: getBreedsArray
+}
 
-export default connect(mapStateToProps)(GameContainer)
+export default connect(mapStateToProps, mapActionToProps)(GameContainer)

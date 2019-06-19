@@ -1,20 +1,14 @@
+div.answers-container {
+    margin-top: 40px;
+}
 
-.answerField {
+ul.guesses {
+    list-style-type: none;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
 }
-
-
-.answerButton {
-    text-transform: capitalize;
-    background-color: lightblue;
-    cursor: pointer;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-.answerButton:hover,
-.answerButton:focus {
-    background-color: rgb(137, 189, 206);
-    box-shadow: 2px 2px 5px rgb(160, 160, 160);
+ul.guesses > li {
+    margin: 5px;
 }

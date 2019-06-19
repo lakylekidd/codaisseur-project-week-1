@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from 'tls';
+//import { connect } from 'react-redux';
 import Game1 from './Game1';
 
 class Game1Container extends Component {
@@ -9,10 +9,11 @@ class Game1Container extends Component {
      */
     answer = (breed) => {
         // Retrieve function from game container
-        const { passAnswer: answer, main } = this.props;
+        const passAnswer = this.props.answer;
+        const { main } = this.props;
 
         // Pass the answer to the game container
-        this.passAnswer(breed.id);
+        passAnswer(breed.id);
 
         // Check if the answer was correct
         if (breed.id === main.id) {
@@ -24,14 +25,16 @@ class Game1Container extends Component {
     }
 
     renderGame() {
+
         // Retrieve current game breeds
         const { main, guesses } = this.props;
         // Check if props are passed in
         if (main && guesses) {
             // Delay 2 seconds before rendering
-            setTimeout(() => {
-                return <Game1 main={main} guesses={guesses} answer={this.answer} />
-            }, 2000);
+            // setTimeout(() => {
+
+            // }, 2000);
+            return <Game1 main={main} guesses={guesses} answer={this.answer} />
         } else {
             return (
                 <div>
@@ -48,4 +51,4 @@ class Game1Container extends Component {
 }
 
 // Export the connected component
-export default connect()(Game1Container);
+export default Game1Container;

@@ -11,6 +11,7 @@ export function setDogs(breeds) {
 
 export function getDogs() {
     return function (dispatch) {
+        console.log('geting dogs')
         request('https://dog.ceo/api/breeds/list/all')
             .then(response => Object.keys(response.body.message)
             )

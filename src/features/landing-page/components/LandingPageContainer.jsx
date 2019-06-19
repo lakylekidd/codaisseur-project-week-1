@@ -9,6 +9,8 @@ export default class LandingPageContainer extends Component {
                 <p>Welcome to dog breeds of the world app.</p>
                 <p>Use the following links to test your skills recognizing all the famous dog breeds.</p>
                 <Link to={`/breeds`}>Doglist</Link>
+                <br />
+                <Link to={'/game'}>Enter Game</Link>
             </div>
         )
     }

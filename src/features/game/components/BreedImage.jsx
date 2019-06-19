@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './BreedImage.css'
+import './BreedImage.css';
 
 export default class BreedImage extends Component {
     render() {
