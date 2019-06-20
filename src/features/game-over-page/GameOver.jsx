@@ -20,15 +20,18 @@ class GameOver extends Component {
     }
 
     render() {
-        // Retrieve the results from the game
+        // Retrieve the results from the game state
+        // TODO: Get the results from the answer state
+        // Awaiting secondary branch feature to be merged
         const results = {
             total: 24,
             wrong: 6,
             correct: 18,
             score: 0.28
         };
+        // Calculate the score in percent and show it as string
         const score = `${Math.floor(results.score * 100)}%`;
-
+        // Return the rendered page
         return (
             <div className="game-over-page">
                 <h1>Game Over</h1>
@@ -49,7 +52,8 @@ const mapDispatchToProps = {
 }
 const mapStateToProps = (reduxState) => {
     return {
-        currentGameState: reduxState.currentGameState
+        currentGameState: reduxState.currentGameState,
+        answers: reduxState.answers
     }
 }
 

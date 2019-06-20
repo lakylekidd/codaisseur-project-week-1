@@ -181,6 +181,7 @@ class GameContainer extends Component {
         return (
             <div>
                 {
+                    // Only render page if we have a current question
                     this.props.current &&
                     <div>
                         {
@@ -190,14 +191,22 @@ class GameContainer extends Component {
                             <Game1Welcome question={this.initNewQuestion} />
                         }
                         {
+                            // Check if the current state is set to running
+                            // If so, show the game one container
+                            // TODO: Figure out which container to show 
+                            // based on the game id from the current state
                             this.props.gameState.state === RUNNING_STATE &&
                             < Game1Container main={this.props.current.main} guesses={this.props.current.guesses} answer={this.answer} />
                         }
                         {
+                            // Check if the current state is set to idle
+                            // If so, redirect to the home page.
                             this.props.gameState.state === IDLE_STATE &&
                             <Redirect to='/' />
                         }
                         {
+                            // Check if the current state is set to game over
+                            // If so, render the game over page.
                             this.props.gameState.state === GAME_OVER_SATE &&
                             <GameOver />
                         }
