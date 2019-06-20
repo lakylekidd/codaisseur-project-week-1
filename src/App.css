@@ -8,7 +8,7 @@ body {
   justify-content: center;
   font-family: 'Montserrat', sans-serif;
   background-color: rgb(225, 231, 245);
-  background-image: url("https://github.com/Fraxcelsior/photo-album/blob/master/doggyBackground.png?raw=true")
+  background-image: url('./doggy6.png')
 }
 div.App {
   max-width: 1040px;
