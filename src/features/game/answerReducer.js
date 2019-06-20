@@ -1,15 +1,43 @@
 import { SET_ANSWERED_BREED } from './actions/setAnsweredBreed';
 /**
- * Reducer that stores a list of already answered breeds
+ * Reducer that stores a list of already answered breeds and calculates the percentage of correct guesses in %
  */
-export default (state = [], action = {}) => {
+
+const initialState = {
+    answers: [],
+    score: 0
+}
+export default (state = initialState, action = {}) => {
     switch (action.type) {
         case SET_ANSWERED_BREED:
-            return [
+            // Construct new state
+            const newState = {
                 ...state,
-                action.payload
-            ]
+                answers: [...state.answers, action.payload]
+            };
+            // Answers retrieved
+            const percentage = getPercentage(newState.answers);
+            // Return the new state
+            return {
+                answers: newState.answers,
+                score: percentage / newState.answers.length * 100
+            }
         default:
             return state
     }
+}
+
+function getPercentage(arrayOfAnswers) {
+    if (!arrayOfAnswers.length) {
+        return 0
+    }
+    const correctAnswers = arrayOfAnswers.reduce((count, currentAnswer) => {
+        if (currentAnswer.correct) {
+            count++
+        }
+        return count
+    }, 0)
+
+    return correctAnswers
+    //correctAnswers/arrayOfAnswers.length * 100
 }
