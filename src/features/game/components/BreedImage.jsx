@@ -7,7 +7,7 @@ export default class BreedImage extends Component {
         const { main } = this.props;
         return (
             <div className="breedImages">
-                <img src={main.img} alt="Guess the breed" />
+                <img src={main.imgUrls[0]} alt="Guess the breed" />
             </div>
         )
     }

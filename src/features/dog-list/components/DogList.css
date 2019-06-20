@@ -5,17 +5,19 @@ div.wrapper {
       list-style: none;  
       display: flex; 
       flex-wrap: wrap;  
-      flex-direction: column; 
-      max-height: 600px;
+      flex-direction: row; 
+      justify-content: space-around;
     }
 .wrapper li { 
-    flex: 1;
+    /*flex: 1;*/
     text-transform: capitalize;
     margin: .2rem;
     background-color: #a9c3fc;
     cursor: pointer;
     border-radius: 5px;
     border: 1px solid #ccc;
+    width: 22%;
+    min-width: 150px;
   }
 
   .wrapper a {

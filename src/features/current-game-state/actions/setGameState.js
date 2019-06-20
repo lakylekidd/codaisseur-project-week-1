@@ -1,3 +1,4 @@
+import { clearCurrentGameData } from './../../game/actions/clearCurrentGameData';
 export const SET_CURRENT_GAME_STATE = 'SET_CURRENT_GAME_STATE';
 
 // Define the available global game states
@@ -14,7 +15,8 @@ export function setGameState(state = IDLE_STATE, gameId = null) {
     return {
         type: SET_CURRENT_GAME_STATE,
         payload: {
-            state, gameId
+            state,
+            gameId
         }
     }
 }

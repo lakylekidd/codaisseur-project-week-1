@@ -14,53 +14,118 @@ import { getBreedsArray } from './../actions/getBreedsArray';
 import { setMainBreed } from './../actions/setMainBreed';
 import { setGuessBreeds } from './../actions/setGuessBreeds';
 import { setAnsweredBreed } from './../actions/setAnsweredBreed';
+import { setShowAnswers } from './../../current-game-state/actions/setShowAnswers';
+import { clearCurrentGameData } from './../actions/clearCurrentGameData';
 import Game1Welcome from './Game1Welcome';
 import GameOver from '../../game-over-page/GameOver';
 
 class GameContainer extends Component {
 
     answer = (breed) => {
-        // let action = {
-        //     type: 'ADD ANSER',
-        //     payload: null
-        // }
-        // if (breed.id === this.props.current.main.id) {
-        //     action.payload = true
-        // } else {
-        //     action.payload = false
-        // }
-
         // Retrieve the needed properties from the breed
         const { id, name, img } = breed;
         // Check if answer was truthy or falsy
         const correct = this.props.current.main.id === id;
         // Set the answered breed
+
         this.props.setAnsweredBreed({
             id, name, img, correct
         });
-        //this.getNextRandomBreed();
+
+        // next question
+        setTimeout(() => {
+            this.props.setShowAnswers(false);
+            const isGameOver = this.checkIfGameOver();
+            if (!isGameOver) {
+                this.initNewQuestion()
+            }
+        }, 2000);
+    }
+    /**
+     * function will set up a new question
+     */
+    initNewQuestion = () => {
+        this.getNextRandomBreed();
+        const rndBreeds = this.getNextRandomBreeds(2);
+        // Set the guesses
+        this.props.setGuessBreeds(rndBreeds);
     }
 
     /**
      * Function that returns a random breed
+     * which will act as the main breed
      */
     getNextRandomBreed = () => {
         // Retrieve a random breed using a random id
-        const uniqueBreed = this.getUniqueBreed(this.getRndId());
+        const uniqueBreed = this.getUniqueBreed(this.getRndId(this.props.breeds));
         // Check if nothing is returned 
         if (uniqueBreed) {
             // Breed is returned, set as main breed
             this.props.setMainBreed(uniqueBreed);
+            return;
         }
+        return this.getNextRandomBreed();
     }
+    /**
+     * Function that will return a specified number
+     * of random breeds which will act as the guesses
+     */
     getNextRandomBreeds = (number) => {
+        // Generate array to hold breeds
+        let guesses = [];
 
+        // Get a new array of breeds 
+        let filteredBreeds = this.props.breeds
+            .filter(b => b.id !== this.props.current.main.id); // Filter out the current main breed
+
+        // Loop through required number of breeds
+        for (let i = 0; i < number; i++) {
+            // Get random id from filtered breeds
+            const rndId = this.getRndId(filteredBreeds);
+            // Check if it random breed exists in the answers
+            const isMain = this.props.current.main.id === rndId;
+            // Check if the random breed exists in the guesses
+            const alreadyAdded = guesses.includes(breed => breed.id === rndId);
+
+            // Make checks
+            if (isMain || alreadyAdded) {
+                // Choose another breed
+                i = guesses.length - 1;
+                continue;
+            }
+
+            // Get the breed from the list
+            const rndBreed = filteredBreeds.find(b => b.id === rndId);
+
+            // Remove possibility of null breeds
+            if (!rndBreed) {
+                i = guesses.length - 1;
+                continue;
+            }
+
+            // Filter out the current random breed
+            filteredBreeds = filteredBreeds.filter(breed => breed.id !== rndId);
+            // Random breed is not main, add to array
+            guesses.push(rndBreed);
+        }
+
+        // Check if all items of the guesses array are set
+        const nullFound = guesses.includes(x => {
+            console.log(x)
+            if (x) return true;
+            return false;
+        });
+        console.log("Null Found: ", nullFound, "In Array: ", guesses)
+        if (nullFound) {
+            return this.getNextRandomBreeds(number)
+        }
+        return guesses;
     }
 
 
     getUniqueBreed = (id, loopCount = 0) => {
         // Check if all dogs have been answered
-        if (this.props.answered.length === this.props.breeds.lenght ||
+        if (this.props.answers.length === this.props.breeds.lenght ||
             loopCount >= 20) {
             // All dogs have been answered OR
             // the recursion hit 20 or more recursions return null
@@ -68,7 +133,7 @@ class GameContainer extends Component {
         }
 
         // Check if the breed has already been answered
-        if (this.props.answered.includes(b => b.id === id)) {
+        if (this.props.answers.includes(b => b.id === id)) {
             // Breed has already been answered
             let newRandomId = id + 1;
             // Check if new random id is more than breeds length
@@ -86,21 +151,29 @@ class GameContainer extends Component {
     /**
      * Returns a random ID from the breeds list
      */
-    getRndId = () => {
-        return Math.floor(Math.random() * this.props.breeds.length);
+    getRndId = (breeds) => {
+        return Math.floor(Math.random() * breeds.length);
     }
 
     componentWillMount() {
         // When we enter any game, we need to fetch all the breeds
         // and make them into custom objects that contain their images
         // this will ensure less api calls during the game
+
         this.props.getBreedsArray();
 
     }
-
+    checkIfGameOver() {
+        if (this.props.gameOver) {
+            this.props.setGameState(GAME_OVER_SATE, this.props.gameState.gameId);
+        }
+        return this.props.gameOver
+    }
     componentWillUnmount() {
         // Set the state back to idle
         this.props.setGameState(IDLE_STATE, 1);
+        // Clear game data
+        this.props.clearCurrentGameData();
 
     }
 
@@ -115,7 +188,7 @@ class GameContainer extends Component {
                             // Check if the current state is set to start
                             // If so, show the welcome page
                             this.props.gameState.state === START_STATE &&
-                            <Game1Welcome />
+                            <Game1Welcome question={this.initNewQuestion} />
                         }
                         {
                             // Check if the current state is set to running
@@ -146,7 +219,8 @@ class GameContainer extends Component {
 
 const mapStateToProps = (store) => {
     return {
-        answered: store.answered,
+        answers: store.answered.answers,
+        gameOver: store.answered.gameOver,
         breeds: store.breeds,
         current: store.currentGameData,
         gameState: store.currentGameState
@@ -157,7 +231,9 @@ const mapDispatchToProps = {
     setMainBreed,
     setGuessBreeds,
     setAnsweredBreed,
-    setGameState
+    setGameState,
+    setShowAnswers,
+    clearCurrentGameData
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameContainer)

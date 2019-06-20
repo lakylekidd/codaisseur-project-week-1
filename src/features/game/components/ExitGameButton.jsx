@@ -4,10 +4,12 @@ import {
     setGameState,
     IDLE_STATE     // No game is currently running.
 } from './../../current-game-state/actions/setGameState';
+import { clearCurrentGameData } from './../actions/clearCurrentGameData';
 import './ExitGameButton.css';
 
 class ExitGameButton extends Component {
     exitGame = () => {
+        this.props.clearCurrentGameData();
         this.props.setGameState(IDLE_STATE);
     }
 
@@ -22,7 +24,8 @@ class ExitGameButton extends Component {
 }
 
 const mapDispatchToProps = {
-    setGameState
+    setGameState,
+    clearCurrentGameData
 }
 
 export default connect(null, mapDispatchToProps)(ExitGameButton);

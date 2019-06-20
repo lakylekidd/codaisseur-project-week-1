@@ -6,10 +6,12 @@ import {
     GAME_OVER_SATE  // Game over page showing with stats
 
 } from './actions/setGameState';
+import { SET_SHOW_ANSWER } from './actions/setShowAnswers';
 
 // Define the initial state
 const initialState = {
     gameId: null,
+    showAnswers: false,
     state: IDLE_STATE
 }
 
@@ -17,6 +19,11 @@ export default (state = initialState, action = {}) => {
     switch (action.type) {
         case SET_CURRENT_GAME_STATE:
             return setCurrentState(state, action);
+        case SET_SHOW_ANSWER:
+            return {
+                ...state,
+                showAnswers: action.payload
+            }
         default:
             return state;
     }
@@ -43,6 +50,7 @@ function setCurrentState(state, action) {
                 state.gameId === null) {
                 // If they match return the new payload
                 return {
+                    ...state,
                     ...action.payload
                 }
             }
