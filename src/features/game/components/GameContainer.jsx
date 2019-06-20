@@ -26,10 +26,13 @@ class GameContainer extends Component {
         // Check if answer was truthy or falsy
         const correct = this.props.current.main.id === id;
         // Set the answered breed
+
         this.props.setAnsweredBreed({
             id, name, img, correct
         });
 
+        const isGameOver = this.checkIfGameOver();
+        console.log("IS GAME OVER?", this.props.gameOver)
         // next question
         setTimeout(() => {
             this.props.setShowAnswers(false);
@@ -120,7 +123,7 @@ class GameContainer extends Component {
 
     getUniqueBreed = (id, loopCount = 0) => {
         // Check if all dogs have been answered
-        if (this.props.answered.length === this.props.breeds.lenght ||
+        if (this.props.answers.length === this.props.breeds.lenght ||
             loopCount >= 20) {
             // All dogs have been answered OR
             // the recursion hit 20 or more recursions return null
@@ -128,7 +131,7 @@ class GameContainer extends Component {
         }
 
         // Check if the breed has already been answered
-        if (this.props.answered.includes(b => b.id === id)) {
+        if (this.props.answers.includes(b => b.id === id)) {
             // Breed has already been answered
             let newRandomId = id + 1;
             // Check if new random id is more than breeds length
@@ -158,7 +161,12 @@ class GameContainer extends Component {
         this.props.getBreedsArray();
 
     }
-
+    checkIfGameOver() {
+        if (this.props.gameOver) {
+            this.props.setGameState(GAME_OVER_SATE);
+        }
+        return this.props.gameOver
+    }
     componentWillUnmount() {
         // Set the state back to idle
         this.props.setGameState(IDLE_STATE, 1);
@@ -196,7 +204,8 @@ class GameContainer extends Component {
 
 const mapStateToProps = (store) => {
     return {
-        answered: store.answered.answers,
+        answers: store.answered.answers,
+        gameOver: store.answered.gameOver,
         breeds: store.breeds,
         current: store.currentGameData,
         gameState: store.currentGameState
