@@ -14,7 +14,8 @@ export function setGameState(state = IDLE_STATE, gameId = null) {
     return {
         type: SET_CURRENT_GAME_STATE,
         payload: {
-            state, gameId
+            state,
+            gameId
         }
     }
 }

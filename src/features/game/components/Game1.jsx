@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import BreedImage from './BreedImage';
 import AnswerField from './AnswerField';
+import { setShowAnswers } from './../../current-game-state/actions/setShowAnswers';
 import './Game1.css';
 
-export default class Game1 extends Component {
+class Game1 extends Component {
 
-    state = {
-        displayAnswer: false
-    }
+    // state = {
+    //     displayAnswer: false
+    // }
 
     answer = (breed) => {
         // Retrieve the answer from the parent
@@ -16,18 +18,19 @@ export default class Game1 extends Component {
         // Call the answer and check result
         checkAnswer(breed);
 
-        // Set to display answers
-        this.setState({
-            displayAnswer: true
-        })
-
+        // // Set to display answers
+        // this.setState({
+        //     displayAnswer: true
+        // })
+        // User answered, show the correct answers
+        this.props.setShowAnswers(true);
     }
 
     renderAnswerItem = (breed) => {
         // Render page
         return (
             <li key={breed.id} style={{ order: breed.id }}>
-                <AnswerField breed={breed} answer={this.answer} displayAnswer={this.state.displayAnswer} />
+                <AnswerField breed={breed} answer={this.answer} displayAnswer={this.props.show} />
             </li>
         );
     }
@@ -78,3 +81,14 @@ export default class Game1 extends Component {
         return this.renderPage();
     }
 }
+
+const mapDispatchToState = {
+    setShowAnswers
+}
+const mapStateToProps = (reduxState) => {
+    return {
+        show: reduxState.currentGameState.showAnswers
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToState)(Game1);
