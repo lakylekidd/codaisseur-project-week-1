@@ -9,7 +9,8 @@ import DogBreedContainer from './features/dog-breed-page/components/DogBreedCont
 import DogListContainer from './features/dog-list/components/DogListContainer'
 
 import GameContainer from './features/game/components/GameContainer'
-import Game1Contener from './features/game-guess-bread-by-image/components/Game1Contener'
+import Game1Contener from './features/game-guess-bread-by-image/components/Game1Contener';
+import GameOver from './features/game-over-page/GameOver';
 import Header from './features/header/components/Header';
 import Footer from './features/footer/components/Footer';
 
@@ -24,6 +25,7 @@ class App extends React.Component {
           <Route exact path="/breeds" component={DogListContainer} />
           <Route exact path="/game1" component={Game1Contener} />
           <Route exact path="/game" component={GameContainer} />
+          <Route exact path="/game/game-over" component={GameOver} />
         </div>
         <Footer />
       </Provider>
