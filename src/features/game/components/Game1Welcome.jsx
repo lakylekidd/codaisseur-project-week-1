@@ -15,6 +15,7 @@ class Game1Welcome extends Component {
      */
     startGame = () => {
         this.props.setGameState(RUNNING_STATE, 1);
+        this.props.question()
     }
 
     render() {

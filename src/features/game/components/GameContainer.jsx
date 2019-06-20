@@ -33,9 +33,15 @@ class GameContainer extends Component {
         // next question
         setTimeout(() => {
             this.props.setShowAnswers(false);
-            this.getNextRandomBreed();
-            this.getNextRandomBreeds(2);
+            this.initNewQuestion()
         }, 2000);
+    }
+    /**
+     * function will set up a new question
+     */
+    initNewQuestion = () => {
+        this.getNextRandomBreed();
+        this.getNextRandomBreeds(2);
     }
 
     /**
@@ -134,6 +140,7 @@ class GameContainer extends Component {
         // When we enter any game, we need to fetch all the breeds
         // and make them into custom objects that contain their images
         // this will ensure less api calls during the game
+        
         this.props.getBreedsArray();
 
     }
@@ -156,7 +163,7 @@ class GameContainer extends Component {
                             // Check if the current state is set to start
                             // If so, show the welcome page
                             this.props.gameState.state === START_STATE &&
-                            <Game1Welcome />
+                            <Game1Welcome question={this.initNewQuestion} />
                         }
                         {
                             this.props.gameState.state === RUNNING_STATE &&
