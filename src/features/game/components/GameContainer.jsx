@@ -132,7 +132,7 @@ class GameContainer extends Component {
 
 const mapStateToProps = (store) => {
     return {
-        answered: store.answered,
+        answered: store.answered.answers,
         breeds: store.breeds,
         current: store.currentGameData,
         gameState: store.currentGameState
