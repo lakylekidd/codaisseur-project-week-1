@@ -14,8 +14,9 @@ class Game1Welcome extends Component {
      * Set the game state to running
      */
     startGame = () => {
+        this.props.question();
         this.props.setGameState(RUNNING_STATE, 1);
-        this.props.question()
+
     }
 
     render() {

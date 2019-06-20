@@ -41,7 +41,9 @@ class GameContainer extends Component {
      */
     initNewQuestion = () => {
         this.getNextRandomBreed();
-        this.getNextRandomBreeds(2);
+        const rndBreeds = this.getNextRandomBreeds(2);
+        // Set the guesses
+        this.props.setGuessBreeds(rndBreeds);
     }
 
     /**
@@ -83,12 +85,19 @@ class GameContainer extends Component {
             // Make checks
             if (isMain || alreadyAdded) {
                 // Choose another breed
-                i = guesses.length;
+                i = guesses.length - 1;
                 continue;
             }
 
             // Get the breed from the list
             const rndBreed = filteredBreeds.find(b => b.id === rndId);
+
+            // Remove possibility of null breeds
+            if (!rndBreed) {
+                i = guesses.length - 1;
+                continue;
+            }
+
             // Filter out the current random breed
             filteredBreeds = filteredBreeds.filter(breed => breed.id !== rndId);
             // Random breed is not main, add to array
@@ -96,11 +105,16 @@ class GameContainer extends Component {
         }
 
         // Check if all items of the guesses array are set
-        const nullFound = guesses.includes(x => x === null || x === undefined);
-        if (nullFound) this.getNextRandomBreeds(number)
-
-        // Set the guesses
-        this.props.setGuessBreeds(guesses);
+        const nullFound = guesses.includes(x => {
+            console.log(x)
+            if (x) return true;
+            return false;
+        });
+        console.log("Null Found: ", nullFound, "In Array: ", guesses)
+        if (nullFound) {
+            return this.getNextRandomBreeds(number)
+        }
+        return guesses;
     }
 
 
@@ -140,7 +154,7 @@ class GameContainer extends Component {
         // When we enter any game, we need to fetch all the breeds
         // and make them into custom objects that contain their images
         // this will ensure less api calls during the game
-        
+
         this.props.getBreedsArray();
 
     }
