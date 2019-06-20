@@ -1,5 +1,6 @@
 import { SET_MAIN_BREED } from './actions/setMainBreed';
 import { SET_GUESS_BREEDS } from './actions/setGuessBreeds';
+import { CLEAR_CURRENT_GAME_DATA } from './actions/clearCurrentGameData';
 
 const initialState = {
     main: {
@@ -33,12 +34,9 @@ export default (state = initialState, action = {}) => {
                 ...state,
                 main: action.payload
             };
+        case CLEAR_CURRENT_GAME_DATA:
+            return initialState;
         default:
             return state
     }
 }
-
-// const inti = {
-//     main: {},
-//     guesses: []
-// }

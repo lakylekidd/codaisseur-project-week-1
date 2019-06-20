@@ -15,6 +15,7 @@ import { setMainBreed } from './../actions/setMainBreed';
 import { setGuessBreeds } from './../actions/setGuessBreeds';
 import { setAnsweredBreed } from './../actions/setAnsweredBreed';
 import { setShowAnswers } from './../../current-game-state/actions/setShowAnswers';
+import { clearCurrentGameData } from './../actions/clearCurrentGameData';
 import Game1Welcome from './Game1Welcome';
 
 class GameContainer extends Component {
@@ -140,6 +141,8 @@ class GameContainer extends Component {
     componentWillUnmount() {
         // Set the state back to idle
         this.props.setGameState(IDLE_STATE, 1);
+        // Clear game data
+        this.props.clearCurrentGameData();
 
     }
 
@@ -184,7 +187,8 @@ const mapDispatchToProps = {
     setGuessBreeds,
     setAnsweredBreed,
     setGameState,
-    setShowAnswers
+    setShowAnswers,
+    clearCurrentGameData
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameContainer)

@@ -1,4 +1,6 @@
 import { SET_ANSWERED_BREED } from './actions/setAnsweredBreed';
+import { CLEAR_CURRENT_GAME_DATA } from './actions/clearCurrentGameData';
+
 /**
  * Reducer that stores a list of already answered breeds and calculates the percentage of correct guesses in %
  */
@@ -22,6 +24,8 @@ export default (state = initialState, action = {}) => {
                 answers: newState.answers,
                 score: percentage / newState.answers.length * 100
             }
+        case CLEAR_CURRENT_GAME_DATA:
+            return initialState;
         default:
             return state
     }
