@@ -31,7 +31,7 @@ export default (state = initialState, action = {}) => {
         case SET_MAIN_BREED:
             return {
                 ...state,
-                main: action.payload,
+                main: action.payload
             };
         default:
             return state

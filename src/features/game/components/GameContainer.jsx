@@ -14,6 +14,7 @@ import { getBreedsArray } from './../actions/getBreedsArray';
 import { setMainBreed } from './../actions/setMainBreed';
 import { setGuessBreeds } from './../actions/setGuessBreeds';
 import { setAnsweredBreed } from './../actions/setAnsweredBreed';
+import { setShowAnswers } from './../../current-game-state/actions/setShowAnswers';
 import Game1Welcome from './Game1Welcome';
 
 class GameContainer extends Component {
@@ -41,6 +42,7 @@ class GameContainer extends Component {
 
         // next question
         setTimeout(() => {
+            this.props.setShowAnswers(false);
             this.getNextRandomBreed();
             this.getNextRandomBreeds(2);
         }, 2000);
@@ -70,11 +72,11 @@ class GameContainer extends Component {
         let guesses = [];
         // Loop through required number of breeds
         let g = 0;
-        for (let i =0; i < number || g >= 30; i++, g++) {
+        for (let i = 0; i < number || g >= 30; i++ , g++) {
             // Get random number
-            const rndId = this.getRndId();            
+            const rndId = this.getRndId();
             // Check if it random breed exists in the answers
-            const isMain = this.props.current.main.id  === rndId;
+            const isMain = this.props.current.main.id === rndId;
             // Is the id also the main?
             if (isMain) {
                 // Random breed is the main breed,
@@ -179,7 +181,8 @@ const mapDispatchToProps = {
     setMainBreed,
     setGuessBreeds,
     setAnsweredBreed,
-    setGameState
+    setGameState,
+    setShowAnswers
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameContainer)
