@@ -11,10 +11,14 @@ body {
   background-image: url("https://github.com/Fraxcelsior/photo-album/blob/master/doggyBackground.png?raw=true")
 }
 div.App {
-  width: 1040px;
+  max-width: 1040px;
+  min-width: 500px;
   margin-top: 100px;
   padding: 10px 30px;
   background-color: rgb(240, 241, 250);
   border-radius: 10px;
   border: 20px solid white;
+}
+div.App > div {
+  
 }

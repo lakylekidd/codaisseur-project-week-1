@@ -1,9 +1,22 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux';
+import {
+    setGameState,
+    IDLE_STATE,     // No game is currently running.
+    START_STATE,    // Game welcome page showing
+    RUNNING_STATE,  // Game logic running
+    GAME_OVER_SATE  // Game over page showing with stats
+} from './../../current-game-state/actions/setGameState';
 import './Header.css';
 import logo from './../../../media/logo.png';
 
-export default class Header extends Component {
+class Header extends Component {
+
+    startGame = (gameId) => {
+        this.props.setGameState(START_STATE, gameId);
+    }
+
     render() {
         return (
             <div className="header">
@@ -23,7 +36,7 @@ export default class Header extends Component {
                             <Link to={`/breeds`}>Doglist</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to={'/game'}>Enter Game</Link>
+                            <Link onClick={() => this.startGame(1)} to={'/game'}>Enter Game 1</Link>
                         </li>
                     </ul>
                 </nav>
@@ -31,3 +44,14 @@ export default class Header extends Component {
         )
     }
 }
+
+const mapStateToProps = (store) => {
+    return {
+        gameState: store.currentGameState
+    }
+}
+const mapDispatchToProps = {
+    setGameState
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

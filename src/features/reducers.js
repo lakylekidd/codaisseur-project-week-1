@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import landingPageReducer from './landing-page/landing-page.reducer';
 
+import currentGameState from './current-game-state/game-state.reducer';
 import dogBreedImages from './dog-breed-page/reducer';
 import dogListReducer from './dog-list/dog-list.reducer'
 import answered from './game/answerReducer.js'
@@ -16,5 +17,6 @@ export default combineReducers({
     dogListReducer,
     answered,
     breeds,
-    currentGameData
+    currentGameData,
+    currentGameState
 })

@@ -1,12 +1,24 @@
-import React, { Component } from 'react'
-import Game1Container from './Game1Container'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import Game1Container from './Game1Container';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+
+import {
+    setGameState,
+    IDLE_STATE,     // No game is currently running.
+    START_STATE,    // Game welcome page showing
+    RUNNING_STATE,  // Game logic running
+    GAME_OVER_SATE  // Game over page showing with stats
+} from './../../current-game-state/actions/setGameState';
 import { getBreedsArray } from './../actions/getBreedsArray';
 import { setMainBreed } from './../actions/setMainBreed';
 import { setGuessBreeds } from './../actions/setGuessBreeds';
 import { setAnsweredBreed } from './../actions/setAnsweredBreed';
+import Game1Welcome from './Game1Welcome';
+import GameOver from '../../game-over-page/GameOver';
 
 class GameContainer extends Component {
+
     answer = (breed) => {
         // let action = {
         //     type: 'ADD ANSER',
@@ -78,19 +90,54 @@ class GameContainer extends Component {
         return Math.floor(Math.random() * this.props.breeds.length);
     }
 
-    componentDidMount() {
+    componentWillMount() {
         // When we enter any game, we need to fetch all the breeds
         // and make them into custom objects that contain their images
         // this will ensure less api calls during the game
         this.props.getBreedsArray();
+
+    }
+
+    componentWillUnmount() {
+        // Set the state back to idle
+        this.props.setGameState(IDLE_STATE, 1);
+
     }
 
     render() {
         return (
             <div>
                 {
+                    // Only render page if we have a current question
                     this.props.current &&
-                    < Game1Container main={this.props.current.main} guesses={this.props.current.guesses} answer={this.answer} />
+                    <div>
+                        {
+                            // Check if the current state is set to start
+                            // If so, show the welcome page
+                            this.props.gameState.state === START_STATE &&
+                            <Game1Welcome />
+                        }
+                        {
+                            // Check if the current state is set to running
+                            // If so, show the game one container
+                            // TODO: Figure out which container to show 
+                            // based on the game id from the current state
+                            this.props.gameState.state === RUNNING_STATE &&
+                            < Game1Container main={this.props.current.main} guesses={this.props.current.guesses} answer={this.answer} />
+                        }
+                        {
+                            // Check if the current state is set to idle
+                            // If so, redirect to the home page.
+                            this.props.gameState.state === IDLE_STATE &&
+                            <Redirect to='/' />
+                        }
+                        {
+                            // Check if the current state is set to game over
+                            // If so, render the game over page.
+                            this.props.gameState.state === GAME_OVER_SATE &&
+                            <GameOver />
+                        }
+                    </div>
                 }
             </div>
         )
@@ -101,14 +148,16 @@ const mapStateToProps = (store) => {
     return {
         answered: store.answered,
         breeds: store.breeds,
-        current: store.currentGameData
+        current: store.currentGameData,
+        gameState: store.currentGameState
     }
 }
 const mapDispatchToProps = {
     getBreedsArray,
     setMainBreed,
     setGuessBreeds,
-    setAnsweredBreed
+    setAnsweredBreed,
+    setGameState
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameContainer)
