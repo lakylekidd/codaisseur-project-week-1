@@ -27,12 +27,14 @@ class GameOver extends Component {
             correct: 18,
             score: 0.28
         };
+        const score = `${Math.floor(results.score * 100)}%`;
 
         return (
             <div className="game-over-page">
                 <h1>Game Over</h1>
+                <h2>Score: {score}</h2>
                 <p>
-                    <b>Sorry!</b> You scored {Math.floor(results.score * 100)}% in the game.
+                    <b>Sorry!</b> You scored {score}% in the game.
                     You can retry again or exit the game.
                 </p>
                 <button className="game-restart" onClick={this.restartGame} title="Click to re-start the game!">Restart Game</button>

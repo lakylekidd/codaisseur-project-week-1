@@ -13,15 +13,19 @@ div.game-over-page h1::before {
 div.game-over-page h1::after {
     content: ' ***';
 }
+div.game-over-page h2 {
+    color: orange;
+}
 div.game-over-page p {
     flex: 1;
     margin: 0;
     max-width: 500px;
 }
 div.game-over-page button.game-restart {
+    margin-top: 10px;
     font-size: 1.4em;
     padding: 10px 30px;
-    background-color: green;
+    background-color: blue;
     color: white;
     border: none;
     border-radius: 5px;
@@ -29,7 +33,7 @@ div.game-over-page button.game-restart {
 }
 div.game-over-page button.game-restart:hover {
     cursor: pointer;
-    background-color: rgb(32, 187, 32);
+    background-color: rgb(69, 69, 253);
     transform: scale(1.1);
     box-shadow: 0px 0px 20px rgb(20, 67, 168);
     border-radius: 50px;
