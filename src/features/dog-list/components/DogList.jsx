@@ -12,8 +12,8 @@ export default function DogList(props) {
                 <ul>
                     {
                         props.dogs.map(dog =>
-                            // <li key={dog}><Link to={`/breeds/${dog}`}>{dog}</Link></li>
-                            <Link to={`/breeds/${dog}`} key={dog}><li>{dog}</li></Link>
+                            <li key={dog}><Link to={`/breeds/${dog}`}><div className='nameBox'>{dog}</div></Link></li>
+                            //<Link to={`/breeds/${dog}`} key={dog}><li>{dog}</li></Link>
                         )
                     }
                 </ul>
