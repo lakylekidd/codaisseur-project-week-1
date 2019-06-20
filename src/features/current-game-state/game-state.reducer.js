@@ -20,7 +20,6 @@ export default (state = initialState, action = {}) => {
         case SET_CURRENT_GAME_STATE:
             return setCurrentState(state, action);
         case SET_SHOW_ANSWER:
-            console.log('show ansswers', action.payload)
             return {
                 ...state,
                 showAnswers: action.payload

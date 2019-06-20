@@ -43,7 +43,7 @@ class GameContainer extends Component {
      */
     getNextRandomBreed = () => {
         // Retrieve a random breed using a random id
-        const uniqueBreed = this.getUniqueBreed(this.getRndId());
+        const uniqueBreed = this.getUniqueBreed(this.getRndId(this.props.breeds));
         // Check if nothing is returned 
         if (uniqueBreed) {
             // Breed is returned, set as main breed
@@ -60,10 +60,14 @@ class GameContainer extends Component {
         // Generate array to hold breeds
         let guesses = [];
 
+        // Get a new array of breeds 
+        let filteredBreeds = this.props.breeds
+            .filter(b => b.id !== this.props.current.main.id); // Filter out the current main breed
+
         // Loop through required number of breeds
         for (let i = 0; i < number; i++) {
-            // Get random number
-            const rndId = this.getRndId();
+            // Get random id from filtered breeds
+            const rndId = this.getRndId(filteredBreeds);
             // Check if it random breed exists in the answers
             const isMain = this.props.current.main.id === rndId;
             // Check if the random breed exists in the guesses
@@ -72,39 +76,22 @@ class GameContainer extends Component {
             // Make checks
             if (isMain || alreadyAdded) {
                 // Choose another breed
-                i--;
+                i = guesses.length;
                 continue;
             }
 
             // Get the breed from the list
-            const rndBreed = this.props.breeds.find(b => b.id === rndId);
+            const rndBreed = filteredBreeds.find(b => b.id === rndId);
+            // Filter out the current random breed
+            filteredBreeds = filteredBreeds.filter(breed => breed.id !== rndId);
             // Random breed is not main, add to array
-            guesses.push(rndBreed)
+            guesses.push(rndBreed);
         }
 
+        // Check if all items of the guesses array are set
+        const nullFound = guesses.includes(x => x === null || x === undefined);
+        if (nullFound) this.getNextRandomBreeds(number)
 
-
-
-        // // Loop through required number of breeds
-        // let g = 0;
-        // for (let i = 0; i < number || g <= 1000; i++ , g++) {
-        //     // Get random number
-        //     const rndId = this.getRndId();
-        //     // Check if it random breed exists in the answers
-        //     const isMain = this.props.current.main.id === rndId;
-        //     // Is the id also the main?
-        //     if (isMain) {
-        //         // Random breed is the main breed,
-        //         // pick a next one
-        //         i = i - 1;
-        //         continue;
-        //     } else {
-        //         // Get the 
-        //         const rndBreed = this.props.breeds.find(b => b.id === rndId);
-        //         // Random breed is not main, add to array
-        //         guesses.push(rndBreed)
-        //     }
-        // }
         // Set the guesses
         this.props.setGuessBreeds(guesses);
     }
@@ -138,8 +125,8 @@ class GameContainer extends Component {
     /**
      * Returns a random ID from the breeds list
      */
-    getRndId = () => {
-        return Math.floor(Math.random() * this.props.breeds.length);
+    getRndId = (breeds) => {
+        return Math.floor(Math.random() * breeds.length);
     }
 
     componentWillMount() {
