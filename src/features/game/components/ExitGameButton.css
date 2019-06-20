@@ -1,0 +1,12 @@
+.exit-link-button {
+    margin-top: 10px;
+    font-size: 1em;
+    padding: 0;
+    background-color: transparent;
+    color: black;
+    text-decoration: underline;
+    border: none;
+}
+.exit-link-button:hover {
+    cursor: pointer;
+}
