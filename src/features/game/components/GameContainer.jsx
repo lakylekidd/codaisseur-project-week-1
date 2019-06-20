@@ -38,10 +38,17 @@ class GameContainer extends Component {
             id, name, img, correct
         });
         //this.getNextRandomBreed();
+
+        // next question
+        setTimeout(() => {
+            this.getNextRandomBreed()
+            this.getNextRandomBreeds()
+        }, 2000);
     }
 
     /**
      * Function that returns a random breed
+     * which will act as the main breed
      */
     getNextRandomBreed = () => {
         // Retrieve a random breed using a random id
@@ -50,10 +57,39 @@ class GameContainer extends Component {
         if (uniqueBreed) {
             // Breed is returned, set as main breed
             this.props.setMainBreed(uniqueBreed);
+            return;
         }
+        return this.getNextRandomBreed();
     }
+    /**
+     * Function that will return a specified number
+     * of random breeds which will act as the guesses
+     */
     getNextRandomBreeds = (number) => {
-
+        // Generate array to hold breeds
+        let guesses = [];
+        // Loop through required number of breeds
+        let g = 0;
+        for (let i =0; i < number || g >= 30; i++, g++) {
+            // Get random number
+            const rndId = this.getRndId();            
+            // Check if it random breed exists in the answers
+            const isMain = this.props.current.main.id  === rndId;
+            // Is the id also the main?
+            if (isMain) {
+                // Random breed is the main breed,
+                // pick a next one
+                i--;
+                continue;
+            } else {
+                // Get the 
+                const rndBreed = this.props.breeds.find(b => b.id === rndId);
+                // Random breed is not main, add to array
+                guesses.push(rndBreed)
+            }
+        }
+        // Return the guesses
+        return guesses;
     }
 
 
