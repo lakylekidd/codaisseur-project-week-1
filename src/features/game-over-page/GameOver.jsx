@@ -28,8 +28,9 @@ class GameOver extends Component {
             correct: 18,
             score: 0.28
         };
+        console.log(this.props.answers);
         // Calculate the score in percent and show it as string
-        const score = `${Math.floor(results.score * 100)}%`;
+        const score = Math.floor(this.props.answers.score) + "%";
         // Return the rendered page
         return (
             <div className="game-over-page">
@@ -52,7 +53,7 @@ const mapDispatchToProps = {
 const mapStateToProps = (reduxState) => {
     return {
         currentGameState: reduxState.currentGameState,
-        answers: reduxState.answers
+        answers: reduxState.answered
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(GameOver);
