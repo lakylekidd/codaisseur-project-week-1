@@ -20,16 +20,6 @@ import Game1Welcome from './Game1Welcome';
 class GameContainer extends Component {
 
     answer = (breed) => {
-        // let action = {
-        //     type: 'ADD ANSER',
-        //     payload: null
-        // }
-        // if (breed.id === this.props.current.main.id) {
-        //     action.payload = true
-        // } else {
-        //     action.payload = false
-        // }
-
         // Retrieve the needed properties from the breed
         const { id, name, img } = breed;
         // Check if answer was truthy or falsy
@@ -38,7 +28,6 @@ class GameContainer extends Component {
         this.props.setAnsweredBreed({
             id, name, img, correct
         });
-        //this.getNextRandomBreed();
 
         // next question
         setTimeout(() => {
@@ -72,7 +61,7 @@ class GameContainer extends Component {
         let guesses = [];
         // Loop through required number of breeds
         let g = 0;
-        for (let i = 0; i < number || g >= 30; i++ , g++) {
+        for (let i = 0; i < number || g >= 1000; i++ , g++) {
             // Get random number
             const rndId = this.getRndId();
             // Check if it random breed exists in the answers
