@@ -31,12 +31,13 @@ class GameContainer extends Component {
             id, name, img, correct
         });
 
-        const isGameOver = this.checkIfGameOver();
-        console.log("IS GAME OVER?", this.props.gameOver)
         // next question
         setTimeout(() => {
             this.props.setShowAnswers(false);
-            this.initNewQuestion()
+            const isGameOver = this.checkIfGameOver();
+            if (!isGameOver) {
+                this.initNewQuestion()
+            }
         }, 2000);
     }
     /**
@@ -163,7 +164,7 @@ class GameContainer extends Component {
     }
     checkIfGameOver() {
         if (this.props.gameOver) {
-            this.props.setGameState(GAME_OVER_SATE);
+            this.props.setGameState(GAME_OVER_SATE, this.props.gameState.gameId);
         }
         return this.props.gameOver
     }
@@ -194,6 +195,10 @@ class GameContainer extends Component {
                         {
                             this.props.gameState.state === IDLE_STATE &&
                             <Redirect to='/' />
+                        }
+                        {
+                            this.props.gameState.state === GAME_OVER_SATE &&
+                            "GAME OVER!"
                         }
                     </div>
                 }
