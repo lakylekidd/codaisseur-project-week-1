@@ -5,18 +5,18 @@ const initialState = {
     main: {
         id: 45,
         name: 'Space dog',
-        img: 'https://cdn3.volusion.com/uarwc.hcckz/v/vspfiles/photos/90-441-2.jpg'
+        imgUrls: ['https://cdn3.volusion.com/uarwc.hcckz/v/vspfiles/photos/90-441-2.jpg']
     },
     guesses: [
         {
             id: 2,
             name: 'Billy Dog',
-            img: 'https://images.homedepot-static.com/productImages/de2f56f3-89e4-48cf-9209-256e290c3a71/svn/architectural-mailboxes-house-letters-numbers-3582b-2-64_1000.jpg'
+            imgUrls: ['https://images.homedepot-static.com/productImages/de2f56f3-89e4-48cf-9209-256e290c3a71/svn/architectural-mailboxes-house-letters-numbers-3582b-2-64_1000.jpg']
         },
         {
             id: 3,
             name: 'Walapalupa',
-            img: 'https://images.homedepot-static.com/productImages/26669ef9-b241-4074-9d52-aa50bf5a3e0c/svn/architectural-mailboxes-house-letters-numbers-3582b-3-64_1000.jpg'
+            imgUrls: ['https://images.homedepot-static.com/productImages/26669ef9-b241-4074-9d52-aa50bf5a3e0c/svn/architectural-mailboxes-house-letters-numbers-3582b-3-64_1000.jpg']
         }
     ]
 }
