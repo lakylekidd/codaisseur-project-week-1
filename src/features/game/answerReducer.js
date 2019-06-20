@@ -67,5 +67,5 @@ function getWrongAnswers(arrayOfAnswers) {
         return count
     }, 0)
 
-    return incorrectAnswers
+    return incorrectAnswers;
 }
