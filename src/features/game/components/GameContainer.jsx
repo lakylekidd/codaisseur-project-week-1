@@ -15,6 +15,7 @@ import { setMainBreed } from './../actions/setMainBreed';
 import { setGuessBreeds } from './../actions/setGuessBreeds';
 import { setAnsweredBreed } from './../actions/setAnsweredBreed';
 import Game1Welcome from './Game1Welcome';
+import GameOver from '../../game-over-page/GameOver';
 
 class GameContainer extends Component {
 
@@ -122,6 +123,10 @@ class GameContainer extends Component {
                         {
                             this.props.gameState.state === IDLE_STATE &&
                             <Redirect to='/' />
+                        }
+                        {
+                            this.props.gameState.state === GAME_OVER_SATE &&
+                            <GameOver />
                         }
                     </div>
                 }
