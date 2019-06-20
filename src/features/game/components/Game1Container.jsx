@@ -25,7 +25,6 @@ class Game1Container extends Component {
     }
 
     renderGame() {
-
         // Retrieve current game breeds
         const { main, guesses } = this.props;
         // Check if props are passed in

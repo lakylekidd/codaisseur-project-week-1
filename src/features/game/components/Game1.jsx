@@ -9,6 +9,7 @@ export default class Game1 extends Component {
         displayAnswer: false
     }
 
+
     answer = (breed) => {
         // Retrieve the answer from the parent
         const checkAnswer = this.props.answer;
@@ -20,7 +21,6 @@ export default class Game1 extends Component {
         this.setState({
             displayAnswer: true
         })
-
     }
 
     renderAnswerItem = (breed) => {
