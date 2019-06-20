@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import {
     setGameState,
-    IDLE_STATE,     // No game is currently running.
     START_STATE,    // Game welcome page showing
 } from './../current-game-state/actions/setGameState';
 import ExitGameButton from './../game/components/ExitGameButton';
@@ -56,5 +55,4 @@ const mapStateToProps = (reduxState) => {
         answers: reduxState.answers
     }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(GameOver);
