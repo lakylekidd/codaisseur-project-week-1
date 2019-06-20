@@ -20,6 +20,7 @@
 }
 .answerButton:hover:disabled {    
     box-shadow: none;
+    cursor: not-allowed;
 }
 
 .correct {
