@@ -24,6 +24,7 @@ export default class Game1 extends Component {
     }
 
     renderAnswerItem = (breed) => {
+        // Render page
         return (
             <li key={breed.id} style={{ order: breed.id }}>
                 <AnswerField breed={breed} answer={this.answer} displayAnswer={this.state.displayAnswer} />

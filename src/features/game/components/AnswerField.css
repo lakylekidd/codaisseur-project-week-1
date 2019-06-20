@@ -15,9 +15,11 @@
     font-size: 19px;
     padding: 10px 40px;
 }
-.answerButton:hover {
-    
+.answerButton:hover {    
     box-shadow: 2px 2px 5px rgb(160, 160, 160)
+}
+.answerButton:hover:disabled {    
+    box-shadow: none;
 }
 
 .correct {

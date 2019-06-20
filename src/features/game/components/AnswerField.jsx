@@ -19,7 +19,9 @@ export default class AnswerField extends Component {
         const selectedClass = (breed.selected ? 'selected' : '');
         return (
             <div className="answerField">
-                <button className={`answerButton ${(displayAnswer && answerClass)} ${selectedClass}`} onClick={(e) => this.checkAnswer(breed, e)}>{breed.name}</button>
+                <button className={`answerButton ${(displayAnswer && answerClass)} ${selectedClass}`}
+                    onClick={(e) => this.checkAnswer(breed, e)}
+                    disabled={displayAnswer}>{breed.name}</button>
             </div >
         )
     }
