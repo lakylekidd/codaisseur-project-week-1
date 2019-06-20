@@ -41,8 +41,8 @@ class GameContainer extends Component {
 
         // next question
         setTimeout(() => {
-            this.getNextRandomBreed()
-            this.getNextRandomBreeds()
+            this.getNextRandomBreed();
+            this.getNextRandomBreeds(2);
         }, 2000);
     }
 
@@ -88,8 +88,8 @@ class GameContainer extends Component {
                 guesses.push(rndBreed)
             }
         }
-        // Return the guesses
-        return guesses;
+        // Set the guesses
+        this.props.setGuessBreeds(guesses);
     }
 
 
