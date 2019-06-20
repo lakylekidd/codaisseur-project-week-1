@@ -17,6 +17,7 @@ import { setAnsweredBreed } from './../actions/setAnsweredBreed';
 import { setShowAnswers } from './../../current-game-state/actions/setShowAnswers';
 import { clearCurrentGameData } from './../actions/clearCurrentGameData';
 import Game1Welcome from './Game1Welcome';
+import GameOver from '../../game-over-page/GameOver';
 
 class GameContainer extends Component {
 
@@ -198,7 +199,7 @@ class GameContainer extends Component {
                         }
                         {
                             this.props.gameState.state === GAME_OVER_SATE &&
-                            "GAME OVER!"
+                            <GameOver />
                         }
                     </div>
                 }
