@@ -46,7 +46,7 @@ class GameContainer extends Component {
      */
     initNewQuestion = () => {
         this.getNextRandomBreed();
-        const rndBreeds = this.getNextRandomBreeds(2);
+        const rndBreeds = this.getNextRandomBreeds(this.props.breedsToRetrieve);
         // Set the guesses
         this.props.setGuessBreeds(rndBreeds);
     }
@@ -221,6 +221,7 @@ const mapStateToProps = (store) => {
     return {
         answers: store.answered.answers,
         gameOver: store.answered.gameOver,
+        breedsToRetrieve: store.answered.guessBreedsToRetrieve,
         breeds: store.breeds,
         current: store.currentGameData,
         gameState: store.currentGameState
