@@ -15,14 +15,14 @@ class Game1Welcome extends Component {
      */
     startGame = () => {
         this.props.question();
-        this.props.setGameState(RUNNING_STATE, this.props.gameId);
+        this.props.setGameState(RUNNING_STATE, 1);
 
     }
 
     render() {
         return (
             <div className="game-welcome-page">
-                <h1>Welcome to Game {this.props.gameId}</h1>
+                <h1>Welcome to Game 1</h1>
                 <p>
                     This mini-game is designed to test your skills
                     in recognizing all of the most famous dog breeds
@@ -48,6 +48,7 @@ class Game1Welcome extends Component {
                     </ol>
                 }
                 < button className="game-start" onClick={this.startGame} title="Click to start the game!">Start Game</button>
+
                 <ExitGameButton />
             </div>
         )

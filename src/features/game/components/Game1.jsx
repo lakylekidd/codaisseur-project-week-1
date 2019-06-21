@@ -18,6 +18,10 @@ class Game1 extends Component {
         // Call the answer and check result
         checkAnswer(breed);
 
+        // // Set to display answers
+        // this.setState({
+        //     displayAnswer: true
+        // })
         // User answered, show the correct answers
         this.props.setShowAnswers(true);
     }
