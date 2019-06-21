@@ -5,11 +5,34 @@ import './GameStatsScreen.css';
 class GameStatsScreen extends Component {
 
     getDifficultLevelStars(level) {
-        // Create an array of level
-        const levels = new Array(level);
-        return (
-            levels.map(x => <li>:broken_heart:</li>)
-        )
+        switch (level) {
+            case 0:
+                return <span role="img" title="Baby Level" aria-label="Easy Level">👶</span>
+            case 1:
+                return <span role="img" title="Cool dude level" aria-label="Medium Level">😎</span>
+            case 2:
+                return <span role="img" title="Devil Level" aria-label="Hard Level">😈</span>
+            default:
+                break;
+        }
+    }
+
+    getLives(lives) {
+        const lifeEmojis = [];
+        //const allowedWrongAnswers = this.props.stats.allowedWrongAnswers;
+        for (let i = 0; i < this.props.stats.allowedWrongAnswers; i++) {
+            if (lives > i) {
+                lifeEmojis.push(
+                    <span key={i} role="img" aria-label="Available Life">❤️</span>
+                );
+            } else {
+                lifeEmojis.push(
+                    <span role="img" className="broken-heart" aria-label="Lost Life">💔️</span>
+                );
+            }
+
+        }
+        return lifeEmojis;
     }
 
 
@@ -21,16 +44,16 @@ class GameStatsScreen extends Component {
         return (
             <div className="game-stats-container">
                 <div className="lives">
-                    {livesLeft}
+                    {
+                        this.getLives(livesLeft)
+                    }
                 </div>
                 <div className="score">
 
                     <div className="difficulty-level">
-                        <ul>
-                            {
-                                this.getDifficultLevelStars(difficultyLevel)
-                            }
-                        </ul>
+                        {
+                            this.getDifficultLevelStars(difficultyLevel)
+                        }
                     </div>
 
                     <div className="score-result">

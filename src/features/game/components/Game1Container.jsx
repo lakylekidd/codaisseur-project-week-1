@@ -57,6 +57,7 @@ class Game1Container extends Component {
             return (
                 <div>
                     <GameStatsScreen />
+                    <br />
                     {
                         this.determineRenderedGame()
                     }
