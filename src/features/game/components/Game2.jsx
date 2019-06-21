@@ -1,10 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import BreedImage from './BreedImage';
 import BreedName from './BreedName';
+import { setShowAnswers } from './../../current-game-state/actions/setShowAnswers';
 import './Game2.css';
 import ImageAnswerField from './ImageAnswerField';
 
-export default class Game1 extends Component {
+class Game2 extends Component {
 
     state = {
         displayAnswer: false
@@ -17,11 +19,7 @@ export default class Game1 extends Component {
         // Call the answer and check result
         checkAnswer(breed);
 
-        // Set to display answers
-        this.setState({
-            displayAnswer: true
-        })
-
+        this.props.setShowAnswers(true);
     }
     //pass props to ImageAnswerField
     renderAnswerItem = (breed) => {
@@ -78,3 +76,14 @@ export default class Game1 extends Component {
         return this.renderPage();
     }
 }
+
+const mapDispatchToState = {
+    setShowAnswers
+}
+const mapStateToProps = (reduxState) => {
+    return {
+        show: reduxState.currentGameState.showAnswers
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToState)(Game2);

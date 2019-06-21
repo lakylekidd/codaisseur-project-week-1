@@ -17,10 +17,11 @@ export default class ImageAnswerField extends Component {
         const { breed, displayAnswer } = this.props;
         // Determine the class to display based on correct or false
         const answerClass = (breed.correct ? 'correct' : 'falsy');
-        const selectedClass = (breed.selected ? 'selected' : '');
+        const selectedClass = (breed.selected ? 'selected' : ' ');
+        console.log(answerClass)
         return (
             <div className="answer-field">
-                <button className={`ImageAnswerButton ${(displayAnswer && answerClass)} ${selectedClass}`}
+                <button className={`ImageAnswerButton ${(displayAnswer ? answerClass : '')} ${selectedClass}`}
                     onClick={(e) => this.checkAnswer(breed, e)}
                     disabled={displayAnswer}>
                     <BreedImage main={breed} />
