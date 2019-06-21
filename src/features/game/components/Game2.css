@@ -1,0 +1,14 @@
+div.answers-container {
+    margin-top: 40px;
+}
+
+ul.guesses {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+ul.guesses > li {
+    margin: 5px;
+}
