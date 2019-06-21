@@ -5,11 +5,9 @@ div.answers-container {
 ul.guesses {
     list-style-type: none;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     margin: 0;
     padding: 0;
-    max-width: 600px;
 }
 ul.guesses > li {
     margin: 5px;
