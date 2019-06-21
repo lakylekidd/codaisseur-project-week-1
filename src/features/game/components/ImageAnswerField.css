@@ -1,0 +1,34 @@
+div.answer-field img {
+    height: 200px;
+    width: 200px;
+    border: 2px solid #a9c3fc;
+}
+div.answer-field button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.answer-field {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+
+
+.ImageAnswerButton:hover {    
+    box-shadow: 2px 2px 5px rgb(160, 160, 160);
+}
+.ImageAnswerButton:hover:disabled {    
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+div.answer-field button.correct {
+    background-color: rgb(137, 206, 146);
+}
+
+div.answer-field button.falsy {
+    background-color: rgb(146, 25, 25)
+}

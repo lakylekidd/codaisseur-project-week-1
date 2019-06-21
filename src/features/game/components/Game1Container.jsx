@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 //import { connect } from 'react-redux';
 import Game1 from './Game1';
+import Game2 from './Game2';
+import { connect } from 'react-redux';
 
 class Game1Container extends Component {
 
@@ -30,11 +32,22 @@ class Game1Container extends Component {
         const { main, guesses } = this.props;
         // Check if props are passed in
         if (main && guesses) {
-            // Delay 2 seconds before rendering
-            // setTimeout(() => {
-
-            // }, 2000);
-            return <Game1 main={main} guesses={guesses} answer={this.answer} />
+            console.log(this.props.gameId)
+            // select the coreect game
+            switch (this.props.gameId) {
+                case 1:
+                    return <Game1 main={main} guesses={guesses} answer={this.answer} />
+                case 2:
+                    return <Game2 main={main} guesses={guesses} answer={this.answer} />
+                case 3:
+                    if (Math.round(Math.random())) {
+                        return <Game1 main={main} guesses={guesses} answer={this.answer} />
+                    } else {
+                        return <Game2 main={main} guesses={guesses} answer={this.answer} />
+                    }
+                default:
+                    return <span>I don't know this game</span>
+            }
         } else {
             return (
                 <div>
@@ -50,5 +63,10 @@ class Game1Container extends Component {
     }
 }
 
-// Export the connected component
-export default Game1Container;
+// map gameId to props
+const mapStateToProps = (store) => {
+    return {
+        gameId: store.currentGameState.gameId
+    }
+}
+export default connect(mapStateToProps)(Game1Container)
