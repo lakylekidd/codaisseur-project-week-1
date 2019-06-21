@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 //import { connect } from 'react-redux';
+import GameStatsScreen from './../../game-stats/GameStatsScreen';
 import Game1 from './Game1';
+import Game2 from './Game2';
+import { connect } from 'react-redux';
 
 class Game1Container extends Component {
 
@@ -24,17 +27,42 @@ class Game1Container extends Component {
         }
     }
 
+    determineRenderedGame() {
+        // Retrieve current game breeds
+        const { main, guesses } = this.props;
+        // select the coreect game
+        switch (this.props.gameId) {
+            case 1:
+                return <Game1 main={main} guesses={guesses} answer={this.answer} />
+            case 2:
+                return <Game2 main={main} guesses={guesses} answer={this.answer} />
+            case 3:
+                if (Math.round(Math.random())) {
+                    return <Game1 main={main} guesses={guesses} answer={this.answer} />
+                } else {
+                    return <Game2 main={main} guesses={guesses} answer={this.answer} />
+                }
+            default:
+                return <span>I don't know this game</span>
+        }
+
+    }
     renderGame() {
 
         // Retrieve current game breeds
         const { main, guesses } = this.props;
         // Check if props are passed in
         if (main && guesses) {
-            // Delay 2 seconds before rendering
-            // setTimeout(() => {
 
-            // }, 2000);
-            return <Game1 main={main} guesses={guesses} answer={this.answer} />
+            return (
+                <div>
+                    <GameStatsScreen />
+                    <br />
+                    {
+                        this.determineRenderedGame()
+                    }
+                </div>
+            )
         } else {
             return (
                 <div>
@@ -50,5 +78,10 @@ class Game1Container extends Component {
     }
 }
 
-// Export the connected component
-export default Game1Container;
+// map gameId to props
+const mapStateToProps = (store) => {
+    return {
+        gameId: store.currentGameState.gameId
+    }
+}
+export default connect(mapStateToProps)(Game1Container)

@@ -1,15 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import BreedImage from './BreedImage';
-import AnswerField from './AnswerField';
+import BreedName from './BreedName';
 import { setShowAnswers } from './../../current-game-state/actions/setShowAnswers';
-import './Game1.css';
+import './Game2.css';
+import ImageAnswerField from './ImageAnswerField';
 
-class Game1 extends Component {
+class Game2 extends Component {
 
-    // state = {
-    //     displayAnswer: false
-    // }
+    state = {
+        displayAnswer: false
+    }
 
     answer = (breed) => {
         // Retrieve the answer from the parent
@@ -18,15 +19,13 @@ class Game1 extends Component {
         // Call the answer and check result
         checkAnswer(breed);
 
-        // User answered, show the correct answers
         this.props.setShowAnswers(true);
     }
-
+    //pass props to ImageAnswerField
     renderAnswerItem = (breed) => {
-        // Render page
         return (
             <li key={breed.id} style={{ order: breed.id }}>
-                <AnswerField breed={breed} answer={this.answer} displayAnswer={this.props.show} />
+                <ImageAnswerField breed={breed} answer={this.answer} displayAnswer={this.props.show} />
             </li>
         );
     }
@@ -54,7 +53,7 @@ class Game1 extends Component {
         return (
             <div>
                 <div className={'image-container'}>
-                    <BreedImage main={main} />
+                    <BreedName main={main} />
                 </div>
                 <div className={'answers-container'}>
                     {
@@ -87,4 +86,4 @@ const mapStateToProps = (reduxState) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToState)(Game1);
+export default connect(mapStateToProps, mapDispatchToState)(Game2);

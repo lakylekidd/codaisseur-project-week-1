@@ -15,35 +15,53 @@ class Game1Welcome extends Component {
      */
     startGame = () => {
         this.props.question();
-        this.props.setGameState(RUNNING_STATE, 1);
+        this.props.setGameState(RUNNING_STATE, this.props.gameId);
 
     }
 
-    render() {
+            render() {                    
         return (
             <div className="game-welcome-page">
-                <h1>Welcome to Game 1</h1>
+                <h1>Welcome to Game {this.props.gameId}</h1>
                 <p>
                     This mini-game is designed to test your skills
                     in recognizing all of the most famous dog breeds
                     from around the world
                 </p>
                 <h2>Instructions:</h2>
-                <ol>
-                    <li>Click 'Start Game'</li>
-                    <li>Choose the right breed based on the displayed image.</li>
-                    <li>You can have a maximum of <b>n</b> wrong answers</li>
-                    <li>Have fun!</li>
-                </ol>
-                <button className="game-start" onClick={this.startGame} title="Click to start the game!">Start Game</button>
+                    {
+                        this.props.gameId === 1 &&
+                        <ol>
+                            <li>Click 'Start Game'</li>
+                            <li>Choose the right breed based on the displayed image.</li>
+                            <li>You can have a maximum of <b>n</b> wrong answers</li>
+                            <li>Have fun!</li>
+                        </ol>
+                    }
+                    {
+                        this.props.gameId === 2 &&
+                        <ol>
+                            <li>Click 'Start Game'</li>
+                            <li>Choose the right breed image based on the displayed breed name.</li>
+                            <li>You can have a maximum of <b>n</b> wrong answers</li>
+                            <li>Have fun!</li>
+                        </ol>
+                    }
+                < button className="game-start" onClick={this.startGame} title="Click to start the game!">Start Game</button>
                 <ExitGameButton />
             </div>
         )
     }
 }
 
-const mapDispatchToProps = {
-    setGameState
+const mapStateToProps = (reduxState) => {
+    return {
+        gameId: reduxState.currentGameState.gameId
+    }
 }
 
-export default connect(null, mapDispatchToProps)(Game1Welcome);
+const mapDispatchToProps = {
+    setGameState
+}     
+
+export default connect(mapStateToProps, mapDispatchToProps)(Game1Welcome);
