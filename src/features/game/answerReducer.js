@@ -98,7 +98,7 @@ function tallyCorrect(arrayOfAnswers) {
             count = 0
         } else if (currentAnswer.correct && count < 5) {
             count++
-        } else if (currentAnswer.correct && count >= 5) {
+        } else if (currentAnswer.correct && count === 5) {
             count =0
         }
         return count
