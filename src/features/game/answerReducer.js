@@ -99,10 +99,9 @@ function tallyCorrect(arrayOfAnswers) {
         } else if (currentAnswer.correct && count < 5) {
             count++
         } else if (currentAnswer.correct && count === 5) {
-            count =0
+            count =1
         }
         return count
     }, 0)
-    console.log("WHAT IS TALLY??", correctAnswers)
     return correctAnswers;
 }
