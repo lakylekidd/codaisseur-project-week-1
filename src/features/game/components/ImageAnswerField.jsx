@@ -20,14 +20,11 @@ export default class ImageAnswerField extends Component {
         const selectedClass = (breed.selected ?  'selected' : '');
         return (
             <div className="answerField">
-                <button>
-                    <BreedImage main={breed} />
+                <button className={`ImageAnswerButton ${(displayAnswer && answerClass)} ${selectedClass}`}
+                    onClick={(e) => this.checkAnswer(breed, e)}
+                    disabled={displayAnswer}><BreedImage/>
                 </button>
                 {/* answer={this.answer} displayAnswer={this.state.displayAnswer} /> */}
-
-                <button className={`answerButton ${(displayAnswer && answerClass)} ${selectedClass}`}
-                    onClick={(e) => this.checkAnswer(breed, e)}
-                    disabled={displayAnswer}>{breed.name}</button>
             </div >
         )
     }

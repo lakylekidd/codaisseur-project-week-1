@@ -26,9 +26,9 @@ export default class Game1 extends Component {
     //pass props to ImageAnswerField
     renderAnswerItem = (breed) => {
         return (
-            <ImageAnswerField />
-            // <li key={breed.id} style={{ order: breed.id }}>
-            // </li>
+            <li key={breed.id} style={{ order: breed.id }}>
+                <ImageAnswerField breed={breed} answer={this.answer} displayAnswer={this.props.show} />
+            </li>
         );
     }
 
