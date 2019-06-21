@@ -16,11 +16,12 @@ class GameStatsScreen extends Component {
     render() {
         // Rerieve needed values
         const { score, allowedWrongAnswers, mistakes, difficultyLevel } = this.props.stats;
+        const livesLeft = allowedWrongAnswers - mistakes;
         // Render the page
         return (
             <div className="game-stats-container">
                 <div className="lives">
-                    lives
+                    {livesLeft}
                 </div>
                 <div className="score">
 
