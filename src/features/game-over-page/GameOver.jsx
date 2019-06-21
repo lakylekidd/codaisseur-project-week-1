@@ -24,6 +24,7 @@ class GameOver extends Component {
         // Retrieve the results from the game state
         // Calculate the score in percent and show it as string
         const score = Math.floor(this.props.answers.score) + "%";
+
         // Return the rendered page
         return (
             <div className="game-over-page">
@@ -31,6 +32,7 @@ class GameOver extends Component {
                 <h2>Score: {score}</h2>
                 <p>
                     <b>Sorry!</b> You scored {score} in the game.
+
                     You can retry again or exit the game.
                 </p>
                 <button className="game-restart" onClick={this.restartGame} title="Click to re-start the game!">Restart Game</button>
