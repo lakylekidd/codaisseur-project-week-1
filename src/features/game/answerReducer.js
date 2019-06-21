@@ -1,6 +1,6 @@
 import { SET_ANSWERED_BREED } from './actions/setAnsweredBreed';
 import { CLEAR_CURRENT_GAME_DATA } from './actions/clearCurrentGameData';
- 
+
 /**
  * Reducer that stores a list of already answered breeds and calculates the percentage of correct guesses in %
  */
@@ -8,7 +8,10 @@ import { CLEAR_CURRENT_GAME_DATA } from './actions/clearCurrentGameData';
 const initialState = {
     answers: [],
     score: 0,
-    gameOver: false
+    gameOver: false,
+    allowedWrongAnswers: 3,
+    mistakes: 0,
+    difficultyLevel: 0
 }
 export default (state = initialState, action = {}) => {
     switch (action.type) {
@@ -21,20 +24,24 @@ export default (state = initialState, action = {}) => {
             // Answers retrieved
             const percentage = getPercentage(newState.answers);
             const mistakes = getWrongAnswers(newState.answers);
-            //if 5 mistakes are made, it's game over
-            if (mistakes >= 2) {
+            //if x mistakes are made, it's game over
+            if (mistakes >= state.allowedWrongAnswers) {
                 return {
                     answers: newState.answers,
                     score: percentage / newState.answers.length * 100,
-                    gameOver: true
+                    gameOver: true,
+                    allowedWrongAnswers: 3,
+                    mistakes: mistakes
                 }
-            } else 
-            // Return the new state
-            return {
-                answers: newState.answers,
-                score: percentage / newState.answers.length * 100,
-                gameOver: false
-            }
+            } else
+                // Return the new state
+                return {
+                    answers: newState.answers,
+                    score: percentage / newState.answers.length * 100,
+                    gameOver: false,
+                    allowedWrongAnswers: 3,
+                    mistakes: mistakes
+                }
         case CLEAR_CURRENT_GAME_DATA:
             return initialState;
         default:

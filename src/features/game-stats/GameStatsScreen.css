@@ -1,0 +1,16 @@
+div.game-stats-container {
+    display: flex;
+}
+div.game-stats-container > div.lives {
+    flex: 1;
+}
+div.game-stats-container > div.difficulty-level {
+    
+}
+div.game-stats-container > div.score {
+    text-align: right;
+}
+div.game-stats-container > div.score > div.score-result span {
+    color: green;
+    font-weight: bold;
+}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 //import { connect } from 'react-redux';
+import GameStatsScreen from './../../game-stats/GameStatsScreen';
 import Game1 from './Game1';
 import Game2 from './Game2';
 import { connect } from 'react-redux';
