@@ -37,7 +37,11 @@ class Header extends Component {
                         </li>
                         <li className="nav-item">
                             <Link onClick={() => this.startGame(1)} to={'/game'}>Enter Game 1</Link>
+                        </li>
+                        <li className="nav-item">
                             <Link onClick={() => this.startGame(2)} to={'/game'}>Enter Game 2</Link>
+                        </li>
+                        <li className="nav-item">
                             <Link onClick={() => this.startGame(3)} to={'/game'}>Enter Game 3</Link>
                         </li>
                     </ul>
