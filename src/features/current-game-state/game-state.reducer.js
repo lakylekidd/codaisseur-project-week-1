@@ -43,6 +43,17 @@ function setCurrentState(state, action) {
         // For every state other than idle
         // Return the new state and game id
         case START_STATE:
+            // Check if the game id does not match current state
+            if (state.gameId !== action.payload.gameId ||
+                state.gameId !== null) {
+                // If they match return the new payload
+                return {
+                    ...state,
+                    ...action.payload
+                }
+            }
+            // Otherwise return the initial state
+            return initialState;
         case RUNNING_STATE:
         case GAME_OVER_SATE:
             // Check if the game id matches current state
