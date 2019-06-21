@@ -27,28 +27,41 @@ class Game1Container extends Component {
         }
     }
 
+    determineRenderedGame() {
+        // Retrieve current game breeds
+        const { main, guesses } = this.props;
+        // select the coreect game
+        switch (this.props.gameId) {
+            case 1:
+                return <Game1 main={main} guesses={guesses} answer={this.answer} />
+            case 2:
+                return <Game2 main={main} guesses={guesses} answer={this.answer} />
+            case 3:
+                if (Math.round(Math.random())) {
+                    return <Game1 main={main} guesses={guesses} answer={this.answer} />
+                } else {
+                    return <Game2 main={main} guesses={guesses} answer={this.answer} />
+                }
+            default:
+                return <span>I don't know this game</span>
+        }
+
+    }
     renderGame() {
 
         // Retrieve current game breeds
         const { main, guesses } = this.props;
         // Check if props are passed in
         if (main && guesses) {
-            console.log(this.props.gameId)
-            // select the coreect game
-            switch (this.props.gameId) {
-                case 1:
-                    return <Game1 main={main} guesses={guesses} answer={this.answer} />
-                case 2:
-                    return <Game2 main={main} guesses={guesses} answer={this.answer} />
-                case 3:
-                    if (Math.round(Math.random())) {
-                        return <Game1 main={main} guesses={guesses} answer={this.answer} />
-                    } else {
-                        return <Game2 main={main} guesses={guesses} answer={this.answer} />
+
+            return (
+                <div>
+                    <GameStatsScreen />
+                    {
+                        this.determineRenderedGame()
                     }
-                default:
-                    return <span>I don't know this game</span>
-            }
+                </div>
+            )
         } else {
             return (
                 <div>
