@@ -1,0 +1,68 @@
+@keyframes myAnimation{
+    0%{
+      opacity: 1;
+    }
+    5%{
+        opacity: 0.5;
+        position: absolute;
+      }
+    100%{
+      display: none;
+      opacity: 0;
+      font-size: 22px;
+      position: absolute;
+      transform: translateY(-50px);
+    }
+  }
+
+  @keyframes levelAnimation{
+    0%{
+      opacity: 0;
+      font-size: 20px;
+      max-height: 20px;
+    }
+    
+    80%{
+      opacity: 1;
+      font-size: 25px;
+      max-height: 20px;
+    }
+    100% {
+        position: relative;
+        font-size: 20px;
+        max-height: 20px;
+    }
+  }
+
+div.game-stats-container {
+    display: flex;
+}
+div.game-stats-container > div.lives {
+    flex: 1;
+}
+div.game-stats-container > div.lives span {
+    transition: 2s linear;
+}
+div.game-stats-container > div.lives span.broken-heart {
+    animation-name: myAnimation;
+    animation-duration: 2000ms;
+    animation-fill-mode: forwards;
+}
+div.game-stats-container > div.score {
+    display: flex;
+    align-items: center;
+    text-align: right;
+    font-size: 20px;
+}
+div.game-stats-container > div.score > div.difficulty-level {
+    margin: 0 10px;
+}
+div.game-stats-container > div.score > div.difficulty-level span {
+    animation-name: levelAnimation;
+    animation-duration: 2000ms;
+    animation-fill-mode: forwards;
+}
+div.game-stats-container > div.score > div.score-result span {
+    color: green;
+    font-weight: bold;
+}
