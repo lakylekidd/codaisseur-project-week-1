@@ -22,7 +22,7 @@ export default class ImageAnswerField extends Component {
             <div className="answerField">
                 <button className={`ImageAnswerButton ${(displayAnswer && answerClass)} ${selectedClass}`}
                     onClick={(e) => this.checkAnswer(breed, e)}
-                    disabled={displayAnswer}><BreedImage/>
+                    disabled={displayAnswer}><img src={breed.imgUrls[0]} alt="An image of the breed" />
                 </button>
                 {/* answer={this.answer} displayAnswer={this.state.displayAnswer} /> */}
             </div >
