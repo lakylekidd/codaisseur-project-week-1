@@ -96,9 +96,9 @@ function tallyCorrect(arrayOfAnswers) {
     const correctAnswers = arrayOfAnswers.reduce((count, currentAnswer) => {
         if (!currentAnswer.correct) {
             count = 0
-        } else if (currentAnswer.correct && count.length < 5) {
+        } else if (currentAnswer.correct && count < 5) {
             count++
-        } else if (currentAnswer.correct && count.length >= 5) {
+        } else if (currentAnswer.correct && count >= 5) {
             count =0
         }
         return count
