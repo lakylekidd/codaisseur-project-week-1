@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import BreedImage from './BreedImage';
 import BreedName from './BreedName';
 import './Game2.css';
+import ImageAnswerField from './ImageAnswerField';
 
 export default class Game1 extends Component {
 
@@ -22,15 +23,12 @@ export default class Game1 extends Component {
         })
 
     }
-
+    //pass props to ImageAnswerField
     renderAnswerItem = (breed) => {
         return (
-            <li key={breed.id} style={{ order: breed.id }}>
-                <button>
-                    <BreedImage main={breed} />
-                </button>
-                {/* answer={this.answer} displayAnswer={this.state.displayAnswer} /> */}
-            </li>
+            <ImageAnswerField />
+            // <li key={breed.id} style={{ order: breed.id }}>
+            // </li>
         );
     }
 
