@@ -47,6 +47,13 @@ class Game1Welcome extends Component {
                         <li>Have fun!</li>
                     </ol>
                 }
+                {
+                    this.props.gameId === 3 &&
+                    <p>
+                        This game is actually a combination of games 1 and 2.
+                        Make sure you don't exceed {this.props.lives} wrongs answers!
+                    </p>
+                }
                 < button className="game-start" onClick={this.startGame} title="Click to start the game!">Start Game</button>
                 <ExitGameButton />
             </div>
