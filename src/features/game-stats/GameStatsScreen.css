@@ -15,6 +15,25 @@
     }
   }
 
+  @keyframes levelAnimation{
+    0%{
+      opacity: 0;
+      font-size: 20px;
+      max-height: 20px;
+    }
+    
+    80%{
+      opacity: 1;
+      font-size: 25px;
+      max-height: 20px;
+    }
+    100% {
+        position: relative;
+        font-size: 20px;
+        max-height: 20px;
+    }
+  }
+
 div.game-stats-container {
     display: flex;
 }
@@ -39,7 +58,9 @@ div.game-stats-container > div.score > div.difficulty-level {
     margin: 0 10px;
 }
 div.game-stats-container > div.score > div.difficulty-level span {
-    font-size: 25px;
+    animation-name: levelAnimation;
+    animation-duration: 2000ms;
+    animation-fill-mode: forwards;
 }
 div.game-stats-container > div.score > div.score-result span {
     color: green;

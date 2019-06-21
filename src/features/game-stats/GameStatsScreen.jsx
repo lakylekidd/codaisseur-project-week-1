@@ -7,11 +7,11 @@ class GameStatsScreen extends Component {
     getDifficultLevelStars(level) {
         switch (level) {
             case 0:
-                return <span role="img" aria-label="Easy Level">👶</span>
+                return <span role="img" title="Baby Level" aria-label="Easy Level">👶</span>
             case 1:
-                return <span role="img" aria-label="Medium Level">😎</span>
+                return <span role="img" title="Cool dude level" aria-label="Medium Level">😎</span>
             case 2:
-                return <span role="img" aria-label="Hard Level">😈</span>
+                return <span role="img" title="Devil Level" aria-label="Hard Level">😈</span>
             default:
                 break;
         }
