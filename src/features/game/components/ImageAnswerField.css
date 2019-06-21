@@ -1,0 +1,10 @@
+div.answer-field img {
+    height: 200px;
+    width: 200px;
+    border: 2px solid #a9c3fc;
+}
+div.answer-field button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}

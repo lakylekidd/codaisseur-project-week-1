@@ -10,5 +10,5 @@ ul.guesses {
     padding: 0;
 }
 ul.guesses > li {
-    margin: 5px;
+    margin: 5px; 
 }
