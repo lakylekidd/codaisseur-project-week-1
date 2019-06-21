@@ -32,13 +32,14 @@ class Game1Container extends Component {
         const { main, guesses } = this.props;
         // Check if props are passed in
         if (main && guesses) {
+            console.log(this.props.gameId)
             // select the coreect game
             switch (this.props.gameId) {
                 case 1:
                     return <Game1 main={main} guesses={guesses} answer={this.answer} />
-                case 2 :
+                case 2:
                     return <Game2 main={main} guesses={guesses} answer={this.answer} />
-                case 3 :
+                case 3:
                     if (Math.round(Math.random())) {
                         return <Game1 main={main} guesses={guesses} answer={this.answer} />
                     } else {
