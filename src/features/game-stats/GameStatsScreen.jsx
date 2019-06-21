@@ -8,7 +8,7 @@ class GameStatsScreen extends Component {
         // Create an array of level
         const levels = new Array(level);
         return (
-            levels.map(x => <li>img</li>)
+            levels.map(x => <li>:broken_heart:</li>)
         )
     }
 

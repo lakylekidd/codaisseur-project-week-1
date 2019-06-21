@@ -11,7 +11,8 @@ const initialState = {
     gameOver: false,
     allowedWrongAnswers: 3,
     mistakes: 0,
-    difficultyLevel: 0
+    difficultyLevel: 0,
+    guessBreedsToRetrieve: 2
 }
 export default (state = initialState, action = {}) => {
     switch (action.type) {
