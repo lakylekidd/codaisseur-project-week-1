@@ -4,9 +4,23 @@
 
 #### 🐕🐩 Build a dog breed memorization game. 🐕🐩
 
-You'll be using a free public API called [Dog API](https://dog.ceo/dog-api/documentation/).
+We'll be using a free public API called [Dog API](https://dog.ceo/dog-api/documentation/).
 
-The webapp must be built using React and Redux. 
+# Dog Breeds of the World
+Game project implemented entirely in a week to showcase some technologies we've been learning during the Codaisseur Bootcamp.
+
+# Project Description
+In this project we implemented a Dog Breed game which allows players to learn all the various dog breeds of the world. Using 3 simple games the user is questioned about the breeds to test his knowledge. The games show him either a photo of a dog with three possible answers or the dog breed with three possible photos to chose from. Upon correctly answering the questions, the player receives a score and as he progresses the difficulty of the game increases by adding more possible answers.
+
+# Technologies used
+This project was entirely built from scratch using the following technologies
+
+React
+Redux
+React Router
+Superagent
+Supporting API
+The project depends on an open source API that provides dog breed names and photos.
 
 # 🎯 Learning goals 🎯 
 
